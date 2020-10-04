@@ -3,23 +3,25 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="mainClass">
-      <Headers />
-      <BrowserRouter>
-        <Redirect from="/AutoPartsStore/" to="/" />
-        <Route exact path="/" render={<AutoPartsStore />} />
+    <div className="app-wrapper">
+      <Header />
+      <div className="app-wrapper-content">
+        <Route path="/autoPartsStore" render={() => <BodyAutoParts />} />
         <Route
-          path="/api/todoitem/:TodoListId"
-          component={TodoItemsComponent}
+          path="/profile"
+          render={() => (
+            <Profile
+              profilePage={props.state.profilePage}
+              dispatch={props.dispatch}
+            />
+          )}
         />
-        <Route path="/ask" />
-        <Route component={NotFoundPage} />
-      </BrowserRouter>
+      </div>
       <Footer />
     </div>
   );
-}
+};
 
 export default App;
