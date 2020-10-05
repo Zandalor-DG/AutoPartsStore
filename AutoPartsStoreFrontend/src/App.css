@@ -1,14 +1,25 @@
-.app-wrapper {
-    margin: 0 auto;
-    display: grid;
-    width: 1200px;
-    grid-template-areas: "h h" "n c";
-    grid-template-rows: 60px 1fr;
-    grid-template-columns: 2fr 10fr;
-    /* grid-gap: 10px; */
+* {
+  box-sizing: border-box;
 }
-
-.app-wrapper-content {
-    grid-area: c;
-    background-color: cornflowerblue;
+.container {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  margin: 0;
+}
+.classContent .classFooter .classHeader {
+  padding: 1em;
+}
+header,
+footer {
+  background: rgb(253, 194, 167);
+  height: 20vh;
+  padding: 1em;
+}
+.classContent {
+  display: flex;
+  flex-direction: column;
+  background: rgb(159, 194, 226);
+  flex: 1;
+  padding: 1em;
 }
