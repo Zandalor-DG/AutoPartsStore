@@ -1,7 +1,12 @@
-import React from 'react';
+import React from "react";
+import Products from "./Products/Products";
 
-const RelatedProducts = () => {
-  return <div className="RelatedProducts">Другие продукты</div>;
+const RelatedProducts = (props) => {
+  let relatedProduct = props.relatedProducts.products.map((a) => (
+    <Products product={a.product} id={a.id} />
+  ));
+
+  return <div className="relatedProduct">{relatedProduct}</div>;
 };
 
 export default RelatedProducts;
