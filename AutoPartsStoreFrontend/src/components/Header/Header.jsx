@@ -1,10 +1,13 @@
 import React from "react";
-import Search from "./Search/Search";
+import SearchParts from "./Search/SearchParts";
 
-const Header = () => {
+const Header = (props) => {
   return (
     <div className="header">
-      <Search />
+      <SearchParts
+        newSearchText={props.newSearchText}
+        dispatch={props.dispatch}
+      />
     </div>
   );
 };

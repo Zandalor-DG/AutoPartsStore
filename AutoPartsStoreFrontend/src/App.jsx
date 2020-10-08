@@ -11,7 +11,7 @@ const App = (props) => {
   return (
     <div className="container">
       <header className="classHeader">
-        <Header />
+        <Header newSearchText={props.newSearchText} dispatch={props.dispatch} />
       </header>
 
       <div className="classContent">
