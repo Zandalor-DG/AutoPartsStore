@@ -7,7 +7,7 @@ const ModelCar = (props) => {
   return (
     <div key={props.id} className="autoParts">
       <NavLink key={props.id} to={path}>
-        {props.modelAuto}
+        {props.modelAuto + " "}
       </NavLink>
     </div>
   );
