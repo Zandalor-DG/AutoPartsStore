@@ -9,7 +9,7 @@ import store from "./redux/Store";
 let renderEntireTree = (state) => {
   ReactDOM.render(
     <BrowserRouter>
-      <App state={state} dispatch={store.dispatch.bind(store)} />
+      <App state={state} dispatch={store.dispatch.bind(store)} store={store} />
     </BrowserRouter>,
     document.getElementById("root")
   );
@@ -17,7 +17,10 @@ let renderEntireTree = (state) => {
 
 renderEntireTree(store.getState());
 
-store.subscribe(renderEntireTree);
+store.subscribe(() => {
+  let state = store.getState();
+  renderEntireTree(state);
+});
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

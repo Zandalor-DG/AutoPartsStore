@@ -1,0 +1,12 @@
+.nameFF::-webkit-input-placeholder {
+  color: #000;
+}
+.nameFF::-moz-placeholder {
+  color: #000;
+}
+.nameFF:-moz-placeholder {
+  color: #000;
+}
+.nameFF:-ms-input-placeholder {
+  color: #000;
+}

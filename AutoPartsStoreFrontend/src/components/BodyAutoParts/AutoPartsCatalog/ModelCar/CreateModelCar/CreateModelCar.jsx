@@ -1,33 +1,38 @@
 import React from "react";
 import {
   updateModelCarElementCreator,
-  addModelCarElement,
-} from "../../../../../redux/Store.js";
+  addModelCarElementCreator,
+} from "../../../../../redux/autoPartsCatalogReducer";
+import c from "./CreateModelCar.module.css";
 
 const CreateModelCar = (props) => {
-  let newCreateModelCarElement = React.createRef();
-  let createModelCar = () => {
-    props.dispatch(addModelCarElement());
+  let newCreateModelCarElement = props.newCreateModelCarElement;
+
+  let onCreateModelCarClick = () => {
+    props.dispatch(addModelCarElementCreator());
   };
 
-  let onCreateChange = () => {
-    let text = newCreateModelCarElement.current.value;
-    // //props.updateNewPostText(text);
-    // //let action = { type: 'UPDATE-NEW-POST-TEXT', newText: text};
-    let action = updateModelCarElementCreator(text);
-    props.dispatch(action);
+  let onCreateChange = (e) => {
+    let text = e.target.value;
+    props.dispatch(updateModelCarElementCreator(text));
   };
 
   return (
     <div>
       <div>
+        <label htmlFor="createOrUpdatedModelCar">
+          Enter a new or update name model car:
+        </label>
+        <br />
         <input
+          className={c.nameFF}
           type="text"
+          id="createOrUpdatedModelCar"
+          placeholder="Enter your message"
           onChange={onCreateChange}
-          ref={newCreateModelCarElement}
-          value={props.newCreateModelCarElement}
+          value={newCreateModelCarElement}
         />
-        <button onClick={createModelCar}>Create Model Car</button>
+        <button onClick={onCreateModelCarClick}>Create Model Car</button>
       </div>
     </div>
   );
