@@ -54,16 +54,21 @@ let initialState = {
 const autoPartsCatalogReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_MODEL_CAR:
-      let newModelCarElement = {
-        id: 6,
-        modelAuto: state.newCreateModelCarElement,
+      return {
+        ...state,
+        newCreateModelCarElement: "",
+        carsModel: [
+          ...state.carsModel,
+          { id: 6, modelAuto: state.newCreateModelCarElement },
+        ],
       };
-      state.carsModel.push(newModelCarElement);
-      state.newCreateModelCarElement = "";
-      return state;
+
     case UPDATE_MODEL_CAR_NAME:
-      state.newCreateModelCarElement = action.newText;
-      return state;
+      return {
+        ...state,
+        newCreateModelCarElement: action.newText,
+      };
+
     default:
       return state;
   }

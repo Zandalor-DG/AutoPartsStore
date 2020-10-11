@@ -2,7 +2,6 @@ import React from "react";
 import c from "./CreateRelatedProduct.module.css";
 
 const CreateRelatedProduct = (props) => {
-  debugger;
   let newRelatedProductElement = props.newRelatedProductElement;
 
   let onCreateRelatedProductClick = () => {

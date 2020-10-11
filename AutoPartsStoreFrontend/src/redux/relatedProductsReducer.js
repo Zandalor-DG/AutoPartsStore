@@ -15,16 +15,24 @@ let initialState = {
 const relatedProductsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_PRODUCT:
-      let newProductElement = {
-        id: 6,
-        product: state.newRelatedProductElement,
+      return {
+        ...state,
+        newRelatedProductElement: "",
+        products: [
+          ...state.products,
+          {
+            id: 6,
+            product: state.newRelatedProductElement,
+          },
+        ],
       };
-      state.products.push(newProductElement);
-      state.newRelatedProductElement = "";
-      return state;
+
     case UPDATE_PRODUCT:
-      state.newRelatedProductElement = action.newText;
-      return state;
+      return {
+        ...state,
+        newRelatedProductElement: action.newText,
+      };
+
     default:
       return state;
   }

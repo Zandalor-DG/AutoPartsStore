@@ -103,4 +103,3 @@ export const updateSearchTextActionCreator = (text) => ({
 });
 
 export default store;
-window.store = store;
