@@ -1,18 +1,21 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import Products from "./Products/Products";
+import CreateRelatedProduct from "./CreateRelatedProduct/CreateRelatedProduct";
 
 const RelatedProducts = (props) => {
-  let relatedProduct = props.relatedProducts.products.map((a) => (
+  let state = props.relatedProducts;
+  let relatedProduct = state.products.map((a) => (
     <Products product={a.product} id={a.id} />
   ));
-
-  let pathCreatedRelatedProduct = "/createRelatedProduct";
 
   return (
     <div className="relatedProduct">
       {relatedProduct}
-      <NavLink to={pathCreatedRelatedProduct}>создать модель </NavLink>
+      <CreateRelatedProduct
+        newRelatedProductElement={state.newRelatedProductElement}
+        addProductElement={props.addProductElement}
+        updateProductElement={props.updateProductElement}
+      />
     </div>
   );
 };

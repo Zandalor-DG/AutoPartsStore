@@ -1,20 +1,23 @@
 import React from "react";
 import ModelCar from "./ModelCar/ModelCar";
-import {NavLink} from "react-router-dom";
+import CreateModelCar from "./ModelCar/CreateModelCar/CreateModelCar";
 
 const AutoPartsCatalog = (props) => {
-    let auto = props.autoPartsCatalog.carsModel.map((a) => (
-        <ModelCar modelAuto={a.modelAuto} id={a.id}/>
-    ));
+  let state = props.autoPartsCatalog;
+  let auto = state.carsModel.map((a) => (
+    <ModelCar modelAuto={a.modelAuto} id={a.id} />
+  ));
 
-    let pathCreateModelCar = "/createModelCar";
-
-    return (
-        <div className="autoPartsCatalog">
-            {auto}
-            <NavLink to={pathCreateModelCar}>создать модель </NavLink>
-        </div>
-    );
+  return (
+    <div className="autoPartsCatalog">
+      {auto}
+      <CreateModelCar
+        newCreateModelCarElement={state.newCreateModelCarElement}
+        addModelCarElement={props.addModelCarElement}
+        updateModelCarElement={props.updateModelCarElement}
+      />
+    </div>
+  );
 };
 
 export default AutoPartsCatalog;

@@ -1,20 +1,16 @@
 import React from "react";
-import {
-  updateModelCarElementCreator,
-  addModelCarElementCreator,
-} from "../../../../../redux/autoPartsCatalogReducer";
 import c from "./CreateModelCar.module.css";
 
 const CreateModelCar = (props) => {
   let newCreateModelCarElement = props.newCreateModelCarElement;
 
   let onCreateModelCarClick = () => {
-    props.dispatch(addModelCarElementCreator());
+    props.addModelCarElement();
   };
 
   let onCreateChange = (e) => {
     let text = e.target.value;
-    props.dispatch(updateModelCarElementCreator(text));
+    props.updateModelCarElement(text);
   };
 
   return (

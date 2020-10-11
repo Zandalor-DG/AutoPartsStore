@@ -2,7 +2,7 @@ import React from "react";
 import {
   updateSearchTextActionCreator,
   addSearchAction,
-} from "../../../redux/Store";
+} from "../../../redux/store";
 
 const SearchParts = (props) => {
   let newSearchElement = React.createRef();

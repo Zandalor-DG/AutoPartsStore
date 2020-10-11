@@ -1,20 +1,17 @@
 import React from "react";
-import {
-  addProductElementCreator,
-  updateProductElementCreator,
-} from "../../../../redux/relatedProductsReducer";
 import c from "./CreateRelatedProduct.module.css";
 
 const CreateRelatedProduct = (props) => {
+  debugger;
   let newRelatedProductElement = props.newRelatedProductElement;
 
-  let onCreateModelCarClick = () => {
-    props.dispatch(addProductElementCreator());
+  let onCreateRelatedProductClick = () => {
+    props.addProductElement();
   };
 
   let onCreateChange = (e) => {
     let text = e.target.value;
-    props.dispatch(updateProductElementCreator(text));
+    props.updateProductElement(text);
   };
 
   return (
@@ -32,7 +29,7 @@ const CreateRelatedProduct = (props) => {
           onChange={onCreateChange}
           value={newRelatedProductElement}
         />
-        <button onClick={onCreateModelCarClick}>Create Model Car</button>
+        <button onClick={onCreateRelatedProductClick}>Create Model Car</button>
       </div>
     </div>
   );
