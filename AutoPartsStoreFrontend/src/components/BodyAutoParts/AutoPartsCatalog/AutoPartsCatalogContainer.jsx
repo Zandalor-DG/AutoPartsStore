@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import AutoPartsCatalog from "./AutoPartsCatalog";
 import {
-  addModelCarElementCreator,
-  updateModelCarElementCreator,
+  addModelCarElement,
+  updateModelCarElement,
 } from "../../../redux/autoPartsCatalogReducer";
 
 let mapStateToProps = (state) => {
@@ -10,21 +10,10 @@ let mapStateToProps = (state) => {
     autoPartsCatalog: state.autoPartsCatalog,
   };
 };
-let mapDispatchToProps = (dispatch) => {
-  return {
-    addModelCarElement: () => {
-      dispatch(addModelCarElementCreator());
-    },
-
-    updateModelCarElement: (text) => {
-      dispatch(updateModelCarElementCreator(text));
-    },
-  };
-};
 
 const AutoPartsCatalogContainer = connect(
   mapStateToProps,
-  mapDispatchToProps
+  { addModelCarElement, updateModelCarElement }
 )(AutoPartsCatalog);
 
 export default AutoPartsCatalogContainer;

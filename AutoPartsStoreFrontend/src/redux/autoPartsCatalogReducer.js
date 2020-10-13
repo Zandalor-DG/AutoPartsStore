@@ -74,8 +74,8 @@ const autoPartsCatalogReducer = (state = initialState, action) => {
   }
 };
 
-export const addModelCarElementCreator = () => ({ type: ADD_MODEL_CAR });
-export const updateModelCarElementCreator = (text) => ({
+export const addModelCarElement = () => ({ type: ADD_MODEL_CAR });
+export const updateModelCarElement = (text) => ({
   type: UPDATE_MODEL_CAR_NAME,
   newText: text,
 });

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Learn\\Git-Practice\\AutoPartsStore\\AutoPartsStoreBackend\\AutoPartsStoreBackend.csproj": {}
+    "C:\\Learning\\Practice\\AutoPartsStore\\AutoPartsStoreBackend\\AutoPartsStoreBackend.csproj": {}
   },
   "projects": {
-    "D:\\Learn\\Git-Practice\\AutoPartsStore\\AutoPartsStoreBackend\\AutoPartsStoreBackend.csproj": {
+    "C:\\Learning\\Practice\\AutoPartsStore\\AutoPartsStoreBackend\\AutoPartsStoreBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Learn\\Git-Practice\\AutoPartsStore\\AutoPartsStoreBackend\\AutoPartsStoreBackend.csproj",
+        "projectUniqueName": "C:\\Learning\\Practice\\AutoPartsStore\\AutoPartsStoreBackend\\AutoPartsStoreBackend.csproj",
         "projectName": "AutoPartsStoreBackend",
-        "projectPath": "D:\\Learn\\Git-Practice\\AutoPartsStore\\AutoPartsStoreBackend\\AutoPartsStoreBackend.csproj",
-        "packagesPath": "C:\\Users\\Семья\\.nuget\\packages\\",
-        "outputPath": "D:\\Learn\\Git-Practice\\AutoPartsStore\\AutoPartsStoreBackend\\obj\\",
+        "projectPath": "C:\\Learning\\Practice\\AutoPartsStore\\AutoPartsStoreBackend\\AutoPartsStoreBackend.csproj",
+        "packagesPath": "C:\\Users\\chama\\.nuget\\packages\\",
+        "outputPath": "C:\\Learning\\Practice\\AutoPartsStore\\AutoPartsStoreBackend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Семья\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\chama\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -37,6 +37,26 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

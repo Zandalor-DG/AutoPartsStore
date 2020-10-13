@@ -38,8 +38,8 @@ const relatedProductsReducer = (state = initialState, action) => {
   }
 };
 
-export const addProductElementCreator = () => ({ type: ADD_PRODUCT });
-export const updateProductElementCreator = (text) => ({
+export const addProductElement = () => ({ type: ADD_PRODUCT });
+export const updateProductElement = (text) => ({
   type: UPDATE_PRODUCT,
   newText: text,
 });
