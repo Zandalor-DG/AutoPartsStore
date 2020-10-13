@@ -14,7 +14,7 @@
 
     [Route("api/[controller]")]
     [ApiController]
-    public class ModelCarsController : ControllerBase
+    public class AutoPartsController : ControllerBase
     {
         #region Properties
 
@@ -24,42 +24,42 @@
 
         #region Constructors
 
-        public ModelCarsController(ApplicationContext context)
+        public AutoPartsController(ApplicationContext context)
         {
             this.db = context;
         }
 
         #endregion
 
-        // GET: api/ModelCars
+        // GET: api/AutoParts
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ModelCar>>> GetModelCars()
+        public async Task<ActionResult<IEnumerable<AutoPart>>> GetAutoParts()
         {
-            return await this.db.ModelCars.ToListAsync();
+            return await this.db.AutoParts.ToListAsync();
         }
 
-        // GET: api/ModelCars/5
+        // GET: api/AutoParts/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ModelCar>> GetModelCar(int id)
+        public async Task<ActionResult<AutoPart>> GetAutoPart(int id)
         {
-            var modelCar = await this.db.ModelCars.FindAsync(id);
+            var autoPart = await this.db.AutoParts.FindAsync(id);
 
-            if (modelCar == null)
+            if (autoPart == null)
                 return NotFound();
 
-            return modelCar;
+            return autoPart;
         }
 
-        // PUT: api/ModelCars/5
+        // PUT: api/AutoParts/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutModelCar(int id, ModelCar modelCar)
+        public async Task<IActionResult> PutAutoPart(int id, AutoPart autoPart)
         {
-            if (id != modelCar.Id)
+            if (id != autoPart.Id)
                 return BadRequest();
 
-            this.db.Entry(modelCar).State = EntityState.Modified;
+            this.db.Entry(autoPart).State = EntityState.Modified;
 
             try
             {
@@ -67,7 +67,7 @@
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ModelCarExists(id))
+                if (!AutoPartExists(id))
                     return NotFound();
                 else
                     throw;
@@ -76,35 +76,35 @@
             return NoContent();
         }
 
-        // POST: api/ModelCars
+        // POST: api/AutoParts
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<ModelCar>> PostModelCar(ModelCar modelCar)
+        public async Task<ActionResult<AutoPart>> PostAutoPart(AutoPart autoPart)
         {
-            this.db.ModelCars.Add(modelCar);
+            this.db.AutoParts.Add(autoPart);
             await this.db.SaveChangesAsync();
 
-            return CreatedAtAction("GetModelCar", new { id = modelCar.Id }, modelCar);
+            return CreatedAtAction("GetAutoPart", new { id = autoPart.Id }, autoPart);
         }
 
-        // DELETE: api/ModelCars/5
+        // DELETE: api/AutoParts/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ModelCar>> DeleteModelCar(int id)
+        public async Task<ActionResult<AutoPart>> DeleteAutoPart(int id)
         {
-            var modelCar = await this.db.ModelCars.FindAsync(id);
-            if (modelCar == null)
+            var autoPart = await this.db.AutoParts.FindAsync(id);
+            if (autoPart == null)
                 return NotFound();
 
-            this.db.ModelCars.Remove(modelCar);
+            this.db.AutoParts.Remove(autoPart);
             await this.db.SaveChangesAsync();
 
-            return modelCar;
+            return autoPart;
         }
 
-        private bool ModelCarExists(int id)
+        private bool AutoPartExists(int id)
         {
-            return this.db.ModelCars.Any(e => e.Id == id);
+            return this.db.AutoParts.Any(e => e.Id == id);
         }
     }
 }

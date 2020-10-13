@@ -1,4 +1,4 @@
-﻿namespace AutoPartsStoreBackend.Models.Entities.RelatedProducts
+﻿namespace AutoPartsStoreBackend.Models.ViewModels.RelatedProducts
 {
     #region << Using >>
 
@@ -16,7 +16,7 @@
 
         public string Manufacturer { get; set; }
 
-        public string Length { get; set; }
+        public string Length  { get; set; }
 
         public string Type { get; set; }
 

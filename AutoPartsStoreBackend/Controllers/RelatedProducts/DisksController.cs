@@ -1,4 +1,4 @@
-﻿namespace AutoPartsStoreBackend.Controllers.AutoPartsCatalog
+﻿namespace AutoPartsStoreBackend.Controllers.RelatedProducts
 {
     #region << Using >>
 
@@ -6,15 +6,17 @@
     using System.Linq;
     using System.Threading.Tasks;
     using AutoPartsStoreBackend.Models.AppSystem;
-    using AutoPartsStoreBackend.Models.Entities.AutopartsCatalog;
+    using AutoPartsStoreBackend.Models.Entities.RelatedProducts;
+    using AutoPartsStoreBackend.Models.ViewModels.RelatedProducts;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
+    using Disk = AutoPartsStoreBackend.Models.ViewModels.RelatedProducts.Disk;
 
     #endregion
 
     [Route("api/[controller]")]
     [ApiController]
-    public class ModelCarsController : ControllerBase
+    public class DisksController : ControllerBase
     {
         #region Properties
 
@@ -24,42 +26,42 @@
 
         #region Constructors
 
-        public ModelCarsController(ApplicationContext context)
+        public DisksController(ApplicationContext context)
         {
             this.db = context;
         }
 
         #endregion
 
-        // GET: api/ModelCars
+        // GET: api/Disks
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ModelCar>>> GetModelCars()
+        public async Task<ActionResult<IEnumerable<Disk>>> GetDisks()
         {
-            return await this.db.ModelCars.ToListAsync();
+            return await this.db.Disks.ToListAsync();
         }
 
-        // GET: api/ModelCars/5
+        // GET: api/Disks/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ModelCar>> GetModelCar(int id)
+        public async Task<ActionResult<Disk>> GetDisk(int id)
         {
-            var modelCar = await this.db.ModelCars.FindAsync(id);
+            var disk = await this.db.Disks.FindAsync(id);
 
-            if (modelCar == null)
+            if (disk == null)
                 return NotFound();
 
-            return modelCar;
+            return disk;
         }
 
-        // PUT: api/ModelCars/5
+        // PUT: api/Disks/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutModelCar(int id, ModelCar modelCar)
+        public async Task<IActionResult> PutDisk(int id, Disk disk)
         {
-            if (id != modelCar.Id)
+            if (id != disk.Id)
                 return BadRequest();
 
-            this.db.Entry(modelCar).State = EntityState.Modified;
+            this.db.Entry(disk).State = EntityState.Modified;
 
             try
             {
@@ -67,7 +69,7 @@
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ModelCarExists(id))
+                if (!DiskExists(id))
                     return NotFound();
                 else
                     throw;
@@ -76,35 +78,35 @@
             return NoContent();
         }
 
-        // POST: api/ModelCars
+        // POST: api/Disks
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<ModelCar>> PostModelCar(ModelCar modelCar)
+        public async Task<ActionResult<Disk>> PostDisk(Disk disk)
         {
-            this.db.ModelCars.Add(modelCar);
+            this.db.Disks.Add(disk);
             await this.db.SaveChangesAsync();
 
-            return CreatedAtAction("GetModelCar", new { id = modelCar.Id }, modelCar);
+            return CreatedAtAction("GetDisk", new { id = disk.Id }, disk);
         }
 
-        // DELETE: api/ModelCars/5
+        // DELETE: api/Disks/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ModelCar>> DeleteModelCar(int id)
+        public async Task<ActionResult<Disk>> DeleteDisk(int id)
         {
-            var modelCar = await this.db.ModelCars.FindAsync(id);
-            if (modelCar == null)
+            var disk = await this.db.Disks.FindAsync(id);
+            if (disk == null)
                 return NotFound();
 
-            this.db.ModelCars.Remove(modelCar);
+            this.db.Disks.Remove(disk);
             await this.db.SaveChangesAsync();
 
-            return modelCar;
+            return disk;
         }
 
-        private bool ModelCarExists(int id)
+        private bool DiskExists(int id)
         {
-            return this.db.ModelCars.Any(e => e.Id == id);
+            return this.db.Disks.Any(e => e.Id == id);
         }
     }
 }

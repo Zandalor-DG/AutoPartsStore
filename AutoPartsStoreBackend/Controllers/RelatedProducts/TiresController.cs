@@ -1,4 +1,4 @@
-﻿namespace AutoPartsStoreBackend.Controllers.AutoPartsCatalog
+﻿namespace AutoPartsStoreBackend.Controllers.RelatedProducts
 {
     #region << Using >>
 
@@ -6,15 +6,17 @@
     using System.Linq;
     using System.Threading.Tasks;
     using AutoPartsStoreBackend.Models.AppSystem;
-    using AutoPartsStoreBackend.Models.Entities.AutopartsCatalog;
+    using AutoPartsStoreBackend.Models.Entities.RelatedProducts;
+    using AutoPartsStoreBackend.Models.ViewModels.RelatedProducts;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
+    using Tire = AutoPartsStoreBackend.Models.ViewModels.RelatedProducts.Tire;
 
     #endregion
 
     [Route("api/[controller]")]
     [ApiController]
-    public class ModelCarsController : ControllerBase
+    public class TiresController : ControllerBase
     {
         #region Properties
 
@@ -24,42 +26,42 @@
 
         #region Constructors
 
-        public ModelCarsController(ApplicationContext context)
+        public TiresController(ApplicationContext context)
         {
             this.db = context;
         }
 
         #endregion
 
-        // GET: api/ModelCars
+        // GET: api/Tires
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ModelCar>>> GetModelCars()
+        public async Task<ActionResult<IEnumerable<Tire>>> GetTires()
         {
-            return await this.db.ModelCars.ToListAsync();
+            return await this.db.Tires.ToListAsync();
         }
 
-        // GET: api/ModelCars/5
+        // GET: api/Tires/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ModelCar>> GetModelCar(int id)
+        public async Task<ActionResult<Tire>> GetTire(int id)
         {
-            var modelCar = await this.db.ModelCars.FindAsync(id);
+            var tire = await this.db.Tires.FindAsync(id);
 
-            if (modelCar == null)
+            if (tire == null)
                 return NotFound();
 
-            return modelCar;
+            return tire;
         }
 
-        // PUT: api/ModelCars/5
+        // PUT: api/Tires/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutModelCar(int id, ModelCar modelCar)
+        public async Task<IActionResult> PutTire(int id, Tire tire)
         {
-            if (id != modelCar.Id)
+            if (id != tire.Id)
                 return BadRequest();
 
-            this.db.Entry(modelCar).State = EntityState.Modified;
+            this.db.Entry(tire).State = EntityState.Modified;
 
             try
             {
@@ -67,7 +69,7 @@
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ModelCarExists(id))
+                if (!TireExists(id))
                     return NotFound();
                 else
                     throw;
@@ -76,35 +78,35 @@
             return NoContent();
         }
 
-        // POST: api/ModelCars
+        // POST: api/Tires
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<ModelCar>> PostModelCar(ModelCar modelCar)
+        public async Task<ActionResult<Tire>> PostTire(Tire tire)
         {
-            this.db.ModelCars.Add(modelCar);
+            this.db.Tires.Add(tire);
             await this.db.SaveChangesAsync();
 
-            return CreatedAtAction("GetModelCar", new { id = modelCar.Id }, modelCar);
+            return CreatedAtAction("GetTire", new { id = tire.Id }, tire);
         }
 
-        // DELETE: api/ModelCars/5
+        // DELETE: api/Tires/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ModelCar>> DeleteModelCar(int id)
+        public async Task<ActionResult<Tire>> DeleteTire(int id)
         {
-            var modelCar = await this.db.ModelCars.FindAsync(id);
-            if (modelCar == null)
+            var tire = await this.db.Tires.FindAsync(id);
+            if (tire == null)
                 return NotFound();
 
-            this.db.ModelCars.Remove(modelCar);
+            this.db.Tires.Remove(tire);
             await this.db.SaveChangesAsync();
 
-            return modelCar;
+            return tire;
         }
 
-        private bool ModelCarExists(int id)
+        private bool TireExists(int id)
         {
-            return this.db.ModelCars.Any(e => e.Id == id);
+            return this.db.Tires.Any(e => e.Id == id);
         }
     }
 }

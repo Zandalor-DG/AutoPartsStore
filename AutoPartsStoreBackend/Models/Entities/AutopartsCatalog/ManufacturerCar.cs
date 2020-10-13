@@ -1,12 +1,13 @@
-﻿namespace AutoPartsStoreBackend.Models.Entities.RelatedProducts
+﻿namespace AutoPartsStoreBackend.Models.Entities.AutopartsCatalog
 {
     #region << Using >>
 
     using System;
+    using System.Collections.Generic;
 
     #endregion
 
-    public class GlassSweeperBrush
+    public class ManufacturerCar
     {
         #region Properties
 
@@ -16,17 +17,16 @@
 
         public string Manufacturer { get; set; }
 
-        public string Length { get; set; }
-
-        public string Type { get; set; }
+        public List<ModelCar> ModelCars { get; set; }
 
         #endregion
 
         #region Constructors
 
-        public GlassSweeperBrush()
+        public ManufacturerCar()
         {
             CrDt = DateTime.UtcNow;
+            ModelCars = new List<ModelCar>();
         }
 
         #endregion

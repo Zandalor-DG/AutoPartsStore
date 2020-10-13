@@ -6,8 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Controllers\Account\" />
-    <Folder Include="Controllers\RelatedProducts\" />
-    <Folder Include="Models\ViewModels\" />
   </ItemGroup>
 
   <ItemGroup>

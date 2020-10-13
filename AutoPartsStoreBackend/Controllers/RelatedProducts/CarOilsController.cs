@@ -1,4 +1,4 @@
-﻿namespace AutoPartsStoreBackend.Controllers.AutoPartsCatalog
+﻿namespace AutoPartsStoreBackend.Controllers.RelatedProducts
 {
     #region << Using >>
 
@@ -6,15 +6,17 @@
     using System.Linq;
     using System.Threading.Tasks;
     using AutoPartsStoreBackend.Models.AppSystem;
-    using AutoPartsStoreBackend.Models.Entities.AutopartsCatalog;
+    using AutoPartsStoreBackend.Models.Entities.RelatedProducts;
+    using AutoPartsStoreBackend.Models.ViewModels.RelatedProducts;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
+    using CarOil = AutoPartsStoreBackend.Models.ViewModels.RelatedProducts.CarOil;
 
     #endregion
 
     [Route("api/[controller]")]
     [ApiController]
-    public class ModelCarsController : ControllerBase
+    public class CarOilsController : ControllerBase
     {
         #region Properties
 
@@ -24,42 +26,42 @@
 
         #region Constructors
 
-        public ModelCarsController(ApplicationContext context)
+        public CarOilsController(ApplicationContext context)
         {
             this.db = context;
         }
 
         #endregion
 
-        // GET: api/ModelCars
+        // GET: api/CarOils
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ModelCar>>> GetModelCars()
+        public async Task<ActionResult<IEnumerable<CarOil>>> GetCarOils()
         {
-            return await this.db.ModelCars.ToListAsync();
+            return await this.db.CarOils.ToListAsync();
         }
 
-        // GET: api/ModelCars/5
+        // GET: api/CarOils/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ModelCar>> GetModelCar(int id)
+        public async Task<ActionResult<CarOil>> GetCarOil(int id)
         {
-            var modelCar = await this.db.ModelCars.FindAsync(id);
+            var carOil = await this.db.CarOils.FindAsync(id);
 
-            if (modelCar == null)
+            if (carOil == null)
                 return NotFound();
 
-            return modelCar;
+            return carOil;
         }
 
-        // PUT: api/ModelCars/5
+        // PUT: api/CarOils/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutModelCar(int id, ModelCar modelCar)
+        public async Task<IActionResult> PutCarOil(int id, CarOil carOil)
         {
-            if (id != modelCar.Id)
+            if (id != carOil.Id)
                 return BadRequest();
 
-            this.db.Entry(modelCar).State = EntityState.Modified;
+            this.db.Entry(carOil).State = EntityState.Modified;
 
             try
             {
@@ -67,7 +69,7 @@
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ModelCarExists(id))
+                if (!CarOilExists(id))
                     return NotFound();
                 else
                     throw;
@@ -76,35 +78,35 @@
             return NoContent();
         }
 
-        // POST: api/ModelCars
+        // POST: api/CarOils
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<ModelCar>> PostModelCar(ModelCar modelCar)
+        public async Task<ActionResult<CarOil>> PostCarOil(CarOil carOil)
         {
-            this.db.ModelCars.Add(modelCar);
+            this.db.CarOils.Add(carOil);
             await this.db.SaveChangesAsync();
 
-            return CreatedAtAction("GetModelCar", new { id = modelCar.Id }, modelCar);
+            return CreatedAtAction("GetCarOil", new { id = carOil.Id }, carOil);
         }
 
-        // DELETE: api/ModelCars/5
+        // DELETE: api/CarOils/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ModelCar>> DeleteModelCar(int id)
+        public async Task<ActionResult<CarOil>> DeleteCarOil(int id)
         {
-            var modelCar = await this.db.ModelCars.FindAsync(id);
-            if (modelCar == null)
+            var carOil = await this.db.CarOils.FindAsync(id);
+            if (carOil == null)
                 return NotFound();
 
-            this.db.ModelCars.Remove(modelCar);
+            this.db.CarOils.Remove(carOil);
             await this.db.SaveChangesAsync();
 
-            return modelCar;
+            return carOil;
         }
 
-        private bool ModelCarExists(int id)
+        private bool CarOilExists(int id)
         {
-            return this.db.ModelCars.Any(e => e.Id == id);
+            return this.db.CarOils.Any(e => e.Id == id);
         }
     }
 }

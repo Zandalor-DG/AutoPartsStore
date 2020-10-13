@@ -1,4 +1,4 @@
-﻿namespace AutoPartsStoreBackend.Models.Entities.RelatedProducts
+﻿namespace AutoPartsStoreBackend.Models.ViewModels.RelatedProducts
 {
     #region << Using >>
 
@@ -6,7 +6,7 @@
 
     #endregion
 
-    public class GlassSweeperBrush
+    public class Tire
     {
         #region Properties
 
@@ -14,17 +14,13 @@
 
         public DateTime CrDt { get; private set; }
 
-        public string Manufacturer { get; set; }
-
-        public string Length { get; set; }
-
-        public string Type { get; set; }
+        public string Name { get; set; }
 
         #endregion
 
         #region Constructors
 
-        public GlassSweeperBrush()
+        public Tire()
         {
             CrDt = DateTime.UtcNow;
         }
