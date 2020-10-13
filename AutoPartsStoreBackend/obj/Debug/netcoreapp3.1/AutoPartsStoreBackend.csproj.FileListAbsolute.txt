@@ -2,7 +2,6 @@ C:\Learning\Practice\AutoPartsStore\AutoPartsStoreBackend\bin\Debug\netcoreapp3.
 C:\Learning\Practice\AutoPartsStore\AutoPartsStoreBackend\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Learning\Practice\AutoPartsStore\AutoPartsStoreBackend\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 C:\Learning\Practice\AutoPartsStore\AutoPartsStoreBackend\bin\Debug\netcoreapp3.1\AutoPartsStoreBackend.exe
-C:\Learning\Practice\AutoPartsStore\AutoPartsStoreBackend\obj\Debug\netcoreapp3.1\AutoPartsStoreBackend.csprojAssemblyReference.cache
 C:\Learning\Practice\AutoPartsStore\AutoPartsStoreBackend\obj\Debug\netcoreapp3.1\AutoPartsStoreBackend.AssemblyInfoInputs.cache
 C:\Learning\Practice\AutoPartsStore\AutoPartsStoreBackend\obj\Debug\netcoreapp3.1\AutoPartsStoreBackend.AssemblyInfo.cs
 C:\Learning\Practice\AutoPartsStore\AutoPartsStoreBackend\obj\Debug\netcoreapp3.1\AutoPartsStoreBackend.RazorTargetAssemblyInfo.cache
@@ -306,3 +305,4 @@ D:\Learn\Git-Practice\AutoPartsStore\AutoPartsStoreBackend\obj\Debug\netcoreapp3
 D:\Learn\Git-Practice\AutoPartsStore\AutoPartsStoreBackend\obj\Debug\netcoreapp3.1\AutoPartsStoreBackend.dll
 D:\Learn\Git-Practice\AutoPartsStore\AutoPartsStoreBackend\obj\Debug\netcoreapp3.1\AutoPartsStoreBackend.pdb
 D:\Learn\Git-Practice\AutoPartsStore\AutoPartsStoreBackend\obj\Debug\netcoreapp3.1\AutoPartsStoreBackend.genruntimeconfig.cache
+C:\Learning\Practice\AutoPartsStore\AutoPartsStoreBackend\obj\Debug\netcoreapp3.1\AutoPartsStoreBackend.csprojAssemblyReference.cache

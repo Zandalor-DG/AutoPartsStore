@@ -12,7 +12,7 @@
     "IIS Express": {
         "commandName": "IISExpress",
         "launchBrowser": true,
-        "launchUrl": "modelcars",
+        "launchUrl": "api/ManufacturerCars",
         "environmentVariables": {
             "ASPNETCORE_ENVIRONMENT": "Development"
         }
@@ -20,7 +20,7 @@
     "AutoPartsStoreBackend": {
         "commandName": "Project",
         "launchBrowser": true,
-        "launchUrl": "modelcars",
+        "launchUrl": "api/ManufacturerCars",
         "applicationUrl": "https://localhost:5001;http://localhost:5000",
         "environmentVariables": {
             "ASPNETCORE_ENVIRONMENT": "Development"

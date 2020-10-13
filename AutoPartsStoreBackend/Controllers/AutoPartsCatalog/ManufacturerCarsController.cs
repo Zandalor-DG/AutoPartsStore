@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     using AutoPartsStoreBackend.Models.AppSystem;
     using AutoPartsStoreBackend.Models.Entities.AutopartsCatalog;
+    using AutoPartsStoreBackend.Models.ViewModels.AutopartsCatalog;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
 
@@ -18,7 +19,7 @@
     {
         #region Properties
 
-        private readonly ApplicationContext _context;
+        private readonly ApplicationContext db;
 
         #endregion
 
@@ -26,7 +27,7 @@
 
         public ManufacturerCarsController(ApplicationContext context)
         {
-            this._context = context;
+            this.db = context;
         }
 
         #endregion
@@ -35,19 +36,47 @@
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ManufacturerCar>>> GetManufacturerCars()
         {
-            return await this._context.ManufacturerCars.ToListAsync();
+            var manufacturerCars = await this.db.ManufacturerCars.Include(manufacturerCar => manufacturerCar.ModelCars).ToListAsync();
+
+            if (manufacturerCars == null)
+                return NotFound();
+
+            var manufacturerCarsVM = manufacturerCars.Select(manufacturerCar =>
+                                                                     new ManufacturerCarVM()
+                                                                     {
+                                                                             Id = manufacturerCar.Id,
+                                                                             Manufacturer = manufacturerCar.Manufacturer,
+                                                                             ModelCarsVM = manufacturerCar.ModelCars.Select(b =>
+                                                                                                                                    new ModelCarVM()
+                                                                                                                                    {
+                                                                                                                                            Id = b.Id,
+                                                                                                                                            Model = b.Model
+                                                                                                                                    }).ToList()
+                                                                     }).ToList();
+
+            return Ok(manufacturerCarsVM);
+            //return await this.db.ManufacturerCars.ToListAsync();
         }
 
         // GET: api/ManufacturerCars/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ManufacturerCar>> GetManufacturerCar(int id)
         {
-            var manufacturerCar = await this._context.ManufacturerCars.FindAsync(id);
+            var manufacturerCar = await this.db.ManufacturerCars.Include(manufacturerCar => manufacturerCar.ModelCars)
+                                            .SingleOrDefaultAsync(manufacturerCar => manufacturerCar.Id == id);
 
             if (manufacturerCar == null)
                 return NotFound();
 
-            return manufacturerCar;
+            var modelCarVM = manufacturerCar.ModelCars.Select(modelCar => new ModelCarVM()
+                                                                          {
+                                                                                  Id = modelCar.Id,
+                                                                                  Model = modelCar.Model,
+                                                                                  Manufacturer = modelCar.ManufacturerCar.Manufacturer
+                                                                          }).ToList();
+
+            return Ok(modelCarVM);
+            // return manufacturerCar;
         }
 
         // PUT: api/ManufacturerCars/5
@@ -59,11 +88,11 @@
             if (id != manufacturerCar.Id)
                 return BadRequest();
 
-            this._context.Entry(manufacturerCar).State = EntityState.Modified;
+            this.db.Entry(manufacturerCar).State = EntityState.Modified;
 
             try
             {
-                await this._context.SaveChangesAsync();
+                await this.db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -80,35 +109,57 @@
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<ManufacturerCar>> PostManufacturerCar(ManufacturerCar manufacturerCar)
+        public async Task<ActionResult<ManufacturerCar>> PostManufacturerCar([FromBody] /*string manufacturer*/ ManufacturerCar manufacturerCar)
         {
-            this._context.ManufacturerCars.Add(manufacturerCar);
-            await this._context.SaveChangesAsync();
+            /*if (manufacturer == null)
+                return NotFound();
 
-            return CreatedAtAction("GetManufacturerCar", new { id = manufacturerCar.Id }, manufacturerCar);
+            var manufacturername = manufacturer.ToString();
+
+            var manufacturerCar = new ManufacturerCar()
+                                  {
+                                          Manufacturer = manufacturername
+                                  };
+
+            this.db.Add(manufacturerCar);
+            await this.db.SaveChangesAsync();
+
+            return Ok();*/
+            this.db.ManufacturerCars.Add(manufacturerCar);
+             await this.db.SaveChangesAsync();
+            
+             return CreatedAtAction("GetManufacturerCar", new { id = manufacturerCar.Id }, manufacturerCar);
         }
 
         // DELETE: api/ManufacturerCars/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<ManufacturerCar>> DeleteManufacturerCar(int id)
         {
-            var manufacturerCar = await this._context.ManufacturerCars.FindAsync(id);
+            var manufacturerCar = await this.db.ManufacturerCars.FindAsync(id);
             if (manufacturerCar == null)
                 return NotFound();
 
-            this._context.ManufacturerCars.Remove(manufacturerCar);
-            await this._context.SaveChangesAsync();
+            foreach (var modelCar in manufacturerCar.ModelCars)
+            {
+                foreach (var autoParts in modelCar.AutoParts)
+                {
+                    this.db.AutoParts.Remove(autoParts);
+                }
+                this.db.ModelCars.Remove(modelCar);
+            }
+            
+            this.db.ManufacturerCars.Remove(manufacturerCar);
+            await this.db.SaveChangesAsync();
 
-            return manufacturerCar;
+            return Ok();
         }
 
         private bool ManufacturerCarExists(int id)
         {
-            return this._context.ManufacturerCars.Any(e => e.Id == id);
+            return this.db.ManufacturerCars.Any(e => e.Id == id);
         }
     }
 }
-
 
 /*
 // GET: api/<TodoListController>

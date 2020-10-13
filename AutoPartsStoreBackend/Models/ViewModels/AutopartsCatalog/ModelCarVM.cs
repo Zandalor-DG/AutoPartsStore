@@ -15,6 +15,8 @@
 
         public string Model { get; set; }
 
+        public string Manufacturer { get; set; }
+
         public List<Entities.AutopartsCatalog.AutoPart> AutoParts { get; set; }
 
         #endregion
