@@ -3,7 +3,7 @@
     #region << Using >>
 
     using AutoPartsStoreBackend.Models.Entities.AutopartsCatalog;
-    using AutoPartsStoreBackend.Models.Entities.RelatedProducts;
+    using AutoPartsStoreBackend.Models.ViewModels.RelatedProducts;
     using Microsoft.EntityFrameworkCore;
 
     #endregion
@@ -18,7 +18,7 @@
 
         public DbSet<ManufacturerCar> ManufacturerCars { get; set; }
 
-        public DbSet<Autochemistry> AutoChemistries { get; set; }
+        public DbSet<Autochemistry> Autochemistries { get; set; }
 
         public DbSet<CarOil> CarOils { get; set; }
 
