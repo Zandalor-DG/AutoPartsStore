@@ -2,7 +2,10 @@ namespace AutoPartsStoreBackend
 {
     #region << Using >>
 
+    using System.Linq;
     using AutoPartsStoreBackend.Models.AppSystem;
+    using AutoPartsStoreBackend.Models.Entities;
+    using AutoPartsStoreBackend.Models.Entities.AutopartsCatalog;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.EntityFrameworkCore;

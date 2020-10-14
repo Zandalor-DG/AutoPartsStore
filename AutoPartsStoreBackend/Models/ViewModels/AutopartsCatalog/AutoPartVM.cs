@@ -2,8 +2,6 @@
 {
     #region << Using >>
 
-    using System;
-
     #endregion
 
     public class AutoPartVM
@@ -14,9 +12,10 @@
 
         public string Name { get; set; }
 
-        public string ModelCarVM { get; set; }
+        public string Model { get; set; }
+
+        public int ModelCarId { get; set; }
 
         #endregion
-
     }
 }

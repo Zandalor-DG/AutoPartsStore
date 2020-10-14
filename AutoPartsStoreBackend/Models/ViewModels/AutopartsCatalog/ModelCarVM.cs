@@ -2,7 +2,6 @@
 {
     #region << Using >>
 
-    using System;
     using System.Collections.Generic;
 
     #endregion
@@ -16,6 +15,8 @@
         public string Model { get; set; }
 
         public string Manufacturer { get; set; }
+
+        public int ManufacturerId { get; set; }
 
         public List<AutoPartVM> AutoParts { get; set; }
 

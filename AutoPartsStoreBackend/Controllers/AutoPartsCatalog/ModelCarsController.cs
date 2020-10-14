@@ -24,9 +24,9 @@
 
         #region Constructors
 
-        public ModelCarsController(ApplicationContext context)
+        public ModelCarsController(ApplicationContext db)
         {
-            this.db = context;
+            this.db = db;
         }
 
         #endregion
@@ -45,7 +45,7 @@
                                                                     {
                                                                             Id = modelCar.Id,
                                                                             Name = modelCar.Name,
-                                                                            ModelCarVM = modelCar.ModelCar.Model
+                                                                            Model = modelCar.ModelCar.Model
                                                                     }).ToList();
 
             return Ok(autoPartsVM);
@@ -68,7 +68,7 @@
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ModelCarExists(id))
+                if (!await ModelCarExists(id))
                     return NotFound();
                 else
                     throw;
@@ -86,11 +86,8 @@
             if (modelCarVM == null)
                 return NotFound();
 
-            var modelCar = new ModelCar()
-                           {
-                                   Model = modelCarVM.Model.ToString()
-                           };
-
+            var modelCar = new ModelCar { Model = modelCarVM.Model.ToString(), ManufacturerCar = { Id = modelCarVM.ManufacturerId }, };
+            
             this.db.Add(modelCar);
             await this.db.SaveChangesAsync();
 
@@ -114,9 +111,9 @@
             return modelCar;
         }
 
-        private bool ModelCarExists(int id)
+        async Task<bool> ModelCarExists(int id)
         {
-            return this.db.ModelCars.Any(e => e.Id == id);
+            return await this.db.ModelCars.AnyAsync(r => r.Id == id);
         }
     }
 }
