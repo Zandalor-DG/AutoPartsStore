@@ -17,7 +17,7 @@
 
         public string Manufacturer { get; set; }
 
-        public List<Entities.AutopartsCatalog.AutoPart> AutoParts { get; set; }
+        public List<AutoPartVM> AutoParts { get; set; }
 
         #endregion
 
@@ -25,7 +25,7 @@
 
         public ModelCarVM()
         {
-            AutoParts = new List<Entities.AutopartsCatalog.AutoPart>();
+            AutoParts = new List<AutoPartVM>();
         }
 
         #endregion

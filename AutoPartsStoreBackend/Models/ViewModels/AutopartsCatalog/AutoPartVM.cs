@@ -14,7 +14,7 @@
 
         public string Name { get; set; }
 
-        public ModelCarVM ModelCarVM { get; set; }
+        public string ModelCarVM { get; set; }
 
         #endregion
 
