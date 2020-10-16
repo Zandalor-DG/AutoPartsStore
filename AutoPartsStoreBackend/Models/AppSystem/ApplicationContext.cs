@@ -2,6 +2,7 @@
 {
     #region << Using >>
 
+    using AutoPartsStoreBackend.Models.Entities.Account;
     using AutoPartsStoreBackend.Models.Entities.AutopartsCatalog;
     using AutoPartsStoreBackend.Models.ViewModels.RelatedProducts;
     using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,8 @@
     public sealed class ApplicationContext : DbContext
     {
         #region Properties
+
+        public DbSet<User> Users { get; set; }
 
         public DbSet<ModelCar> ModelCars { get; set; }
 

@@ -2,10 +2,8 @@ namespace AutoPartsStoreBackend
 {
     #region << Using >>
 
-    using System.Linq;
     using AutoPartsStoreBackend.Models.AppSystem;
-    using AutoPartsStoreBackend.Models.Entities;
-    using AutoPartsStoreBackend.Models.Entities.AutopartsCatalog;
+    using Microsoft.AspNetCore.Authentication.Cookies;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.EntityFrameworkCore;
@@ -39,6 +37,12 @@ namespace AutoPartsStoreBackend
             services.AddDbContext<ApplicationContext>(options =>
                                                               options.UseSqlServer(connection));
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                    .AddCookie(options =>
+                               {
+                                   options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                               });
+
             services.AddControllers();
         }
 
@@ -52,6 +56,7 @@ namespace AutoPartsStoreBackend
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
