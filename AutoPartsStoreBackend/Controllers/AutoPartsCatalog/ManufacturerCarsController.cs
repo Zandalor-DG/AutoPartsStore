@@ -50,7 +50,8 @@
                                                                                                                                     new ModelCarVM()
                                                                                                                                     {
                                                                                                                                             Id = b.Id,
-                                                                                                                                            Model = b.Model
+                                                                                                                                            Model = b.Model,
+                                                                                                                                            Manufacturer = manufacturerCar.Manufacturer
                                                                                                                                     }).ToList()
                                                                      }).ToList();
 
@@ -114,7 +115,7 @@
 
             var manufacturerCars = new ManufacturerCar()
                                    {
-                                           Manufacturer = manufacturerCarVM.Manufacturer.ToString()
+                                           Manufacturer = manufacturerCarVM.Manufacturer
                                    };
 
             this.db.Add(manufacturerCars);

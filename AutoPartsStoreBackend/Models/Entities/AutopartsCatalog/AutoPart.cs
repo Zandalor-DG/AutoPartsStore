@@ -6,7 +6,7 @@
 
     #endregion
 
-    public class AutoPart
+    public class AutoPart : IEntityBase
     {
         #region Properties
 

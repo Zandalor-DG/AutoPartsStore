@@ -59,18 +59,22 @@
         // POST: api/AutoParts
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<AutoPart>> PostAutoPart(AutoPart autoPart)
+        [HttpPost ("{id}")]
+        public async Task<ActionResult<AutoPart>> PostAutoPart(int id, AutoPart autoPartVM)
         {
-            if (autoPart == null)
+            if (autoPartVM == null)
                 return NotFound();
 
-            var modelCar = new ModelCar()
-                           {
-                                   Model = autoPart.Name.ToString()
-                           };
+            var autoParts = await this.db.ModelCars.Include(autoPart => autoPart.AutoParts)
+                                     .SingleOrDefaultAsync(modelCar => modelCar.Id == id);
 
-            this.db.Add(modelCar);
+            autoParts.AutoParts.Add(new AutoPart()
+                                    {
+                                            Name = autoPartVM.Name,
+                                            ModelCar = autoParts
+                                    });
+
+            this.db.Update(autoParts);
             await this.db.SaveChangesAsync();
 
             return Ok();

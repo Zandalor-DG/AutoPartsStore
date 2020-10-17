@@ -80,15 +80,22 @@
         // POST: api/ModelCars
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<ModelCar>> PostModelCar(ModelCarVM modelCarVM)
+        [HttpPost("{id}")]
+        public async Task<ActionResult<ModelCar>> PostModelCar(int id, ModelCarVM modelCarVM)
         {
             if (modelCarVM == null)
                 return NotFound();
 
-            var modelCar = new ModelCar { Model = modelCarVM.Model.ToString(), ManufacturerCar = { Id = modelCarVM.ManufacturerId }, };
-            
-            this.db.Add(modelCar);
+            var modelCar = await this.db.ManufacturerCars.Include(modelCar => modelCar.ModelCars)
+                                     .SingleOrDefaultAsync(manufacturer => manufacturer.Id == id);
+
+            modelCar.ModelCars.Add(new ModelCar()
+                                   {
+                                           Model = modelCarVM.Model,
+                                           ManufacturerCar = modelCar,
+                                   });
+
+            this.db.Update(modelCar);
             await this.db.SaveChangesAsync();
 
             return Ok();

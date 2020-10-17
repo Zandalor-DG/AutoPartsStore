@@ -26,13 +26,6 @@ namespace AutoPartsStoreBackend.Controllers.Account
             this.db = context;
         }
 
-        // GET: api/Account
-        [HttpGet]
-        public IActionResult Login()
-        {
-            return Ok();
-        }
-        
         // POST: api/Account
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -40,25 +33,18 @@ namespace AutoPartsStoreBackend.Controllers.Account
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginModel model)
         {
-            if (ModelState.IsValid)
-            {
-                User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
-                if (user != null)
-                {
-                    await Authenticate(model.Email); // аутентификация
- 
-                    return Ok();
-                }
-                ModelState.AddModelError("", "Некорректные логин и(или) пароль");
-            }
-            return BadRequest(model);
-        }
+            if (!ModelState.IsValid)
+                return BadRequest(model);
 
-        // GET: api/Account
-        [HttpGet]
-        public IActionResult Register()
-        {
-            return Ok();
+            var user = await this.db.Users.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
+            if (user != null)
+            {
+                await Authenticate(model.Email);
+ 
+                return Ok();
+            }
+            ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+            return BadRequest(model);
         }
 
         // POST: api/Account
@@ -68,22 +54,21 @@ namespace AutoPartsStoreBackend.Controllers.Account
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+                return BadRequest(model);
+
+            var user = await this.db.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
+            if (user == null)
             {
-                User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
-                if (user == null)
-                {
-                    // добавляем пользователя в бд
-                    db.Users.Add(new User { Email = model.Email, Password = model.Password });
-                    await db.SaveChangesAsync();
+                this.db.Users.Add(new User { Email = model.Email, Password = model.Password });
+                await this.db.SaveChangesAsync();
  
-                    await Authenticate(model.Email); // аутентификация
+                await Authenticate(model.Email); 
  
-                    return Ok();
-                }
-                else
-                    ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                return Ok();
             }
+            else
+                ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             return BadRequest(model);
         }
  
@@ -100,7 +85,7 @@ namespace AutoPartsStoreBackend.Controllers.Account
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login", "Account");
+            return Ok();
         }
     }
 }

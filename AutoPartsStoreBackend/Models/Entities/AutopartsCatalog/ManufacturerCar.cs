@@ -7,7 +7,7 @@
 
     #endregion
 
-    public class ManufacturerCar
+    public class ManufacturerCar : IEntityBase
     {
         #region Properties
 

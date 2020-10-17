@@ -37,6 +37,8 @@ namespace AutoPartsStoreBackend
             services.AddDbContext<ApplicationContext>(options =>
                                                               options.UseSqlServer(connection));
 
+            services.AddCors();
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options =>
                                {
@@ -55,6 +57,9 @@ namespace AutoPartsStoreBackend
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(builder => builder.WithOrigins("http://localhost:3000")
+                                           .AllowCredentials());
 
             app.UseAuthentication();
             app.UseAuthorization();

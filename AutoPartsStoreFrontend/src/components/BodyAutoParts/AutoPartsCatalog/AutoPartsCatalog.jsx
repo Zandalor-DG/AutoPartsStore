@@ -4,8 +4,8 @@ import CreateModelCar from "./ModelCar/CreateModelCar/CreateModelCar";
 
 const AutoPartsCatalog = (props) => {
   let state = props.autoPartsCatalog;
-  let auto = state.carsModel.map((a) => (
-    <ModelCar modelAuto={a.modelAuto} id={a.id} />
+  let auto = state.manufacturerCar.map((a) => (
+    <ModelCar modelAuto={a.manufacturer} id={a.id} />
   ));
 
   return (

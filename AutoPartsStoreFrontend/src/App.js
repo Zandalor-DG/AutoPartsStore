@@ -11,10 +11,7 @@ import AutoPartsCatalogContainer from "./components/BodyAutoParts/AutoPartsCatal
 const App = (props) => {
   return (
     <div className="container">
-      <header className="classHeader">
-        <Header />
-      </header>
-
+      <Header />
       <div className="classContent">
         <NavBar />
         <Route

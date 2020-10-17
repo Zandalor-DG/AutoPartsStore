@@ -5,14 +5,14 @@ import SigInSigUp from "./SigIn/SigInSigUp";
 
 const Header = (props) => {
   return (
-    <div className="header">
+    <header className="classHeader">
       <SigInSigUp />
       <SearchParts
         newSearchText={props.newSearchText}
         dispatch={props.dispatch}
       />
       <ShoppingCart />
-    </div>
+    </header>
   );
 };
 
