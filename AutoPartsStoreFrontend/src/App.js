@@ -5,13 +5,13 @@ import NavBar from "./components/BodyAutoParts/NavBar";
 import RelatedProductsContainer from "./components/BodyAutoParts/RelatedProducts/RelatedProductsContainer.jsx";
 import CreateRelatedProduct from "./components/BodyAutoParts/RelatedProducts/CreateRelatedProduct/CreateRelatedProduct.jsx";
 import Footer from "./components/Footer/Footer";
-import Header from "./components/Header/Header";
+import HeaderContainer from "./components/Header/HeaderContainer";
 import AutoPartsCatalogContainer from "./components/BodyAutoParts/AutoPartsCatalog/AutoPartsCatalogContainer";
 
 const App = (props) => {
   return (
     <div className="container">
-      <Header />
+      <HeaderContainer />
       <div className="classContent">
         <NavBar />
         <Route
