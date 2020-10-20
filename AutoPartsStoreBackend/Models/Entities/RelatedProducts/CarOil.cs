@@ -6,7 +6,7 @@
 
     #endregion
 
-    public class CarOil
+    public class CarOil : IEntityBase
     {
         #region Properties
 

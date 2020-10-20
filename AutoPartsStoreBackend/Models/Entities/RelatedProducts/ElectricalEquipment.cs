@@ -6,7 +6,7 @@
 
     #endregion
 
-    public class ElectricalEquipment
+    public class ElectricalEquipment : IEntityBase
     {
         #region Properties
 

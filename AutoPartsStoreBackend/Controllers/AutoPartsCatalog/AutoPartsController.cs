@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using AutoPartsStoreBackend.Models.AppSystem;
     using AutoPartsStoreBackend.Models.Entities.AutopartsCatalog;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +14,7 @@
 
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AutoPartsController : ControllerBase
     {
         #region Properties
@@ -59,14 +61,14 @@
         // POST: api/AutoParts
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost ("{id}")]
+        [HttpPost("{id}")]
         public async Task<ActionResult<AutoPart>> PostAutoPart(int id, AutoPart autoPartVM)
         {
             if (autoPartVM == null)
                 return NotFound();
 
-            var autoParts = await this.db.ModelCars.Include(autoPart => autoPart.AutoParts)
-                                     .SingleOrDefaultAsync(modelCar => modelCar.Id == id);
+            var autoParts = await this.db.ModelCars.Include(a => a.AutoParts)
+                                      .SingleOrDefaultAsync(b => b.Id == id);
 
             autoParts.AutoParts.Add(new AutoPart()
                                     {

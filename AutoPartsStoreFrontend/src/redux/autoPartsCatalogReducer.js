@@ -1,3 +1,5 @@
+import { autoPartsCatalogAPI } from "../api/api";
+
 const ADD_MODEL_CAR = "ADD_MODEL_CAR";
 const UPDATE_MODEL_CAR_NAME = "UPDATE_MODEL_CAR_NAME";
 const SET_AUTO_PARTS_CATALOG = "SET_AUTO_PARTS_CATALOG";
@@ -62,5 +64,12 @@ export const toggleIsFetching = (isFetching) => ({
   type: TOGGLE_IS_FETCHING,
   isFetching,
 });
+
+export const getAutoPartsCatalogManufacturer = () => (dispatch) => {
+  autoPartsCatalogAPI.getAutoPartsStoreCatalogManufacturer().then((data) => {
+    dispatch(setAutoPartsCatalog(data));
+    dispatch(toggleIsFetching(false));
+  });
+};
 
 export default autoPartsCatalogReducer;

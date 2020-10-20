@@ -6,7 +6,7 @@
 
     #endregion
 
-    public class Autochemistry
+    public class Autochemistry : IEntityBase
     {
         #region Properties
 

@@ -8,6 +8,7 @@
     using AutoPartsStoreBackend.Models.AppSystem;
     using AutoPartsStoreBackend.Models.Entities.AutopartsCatalog;
     using AutoPartsStoreBackend.Models.ViewModels.AutopartsCatalog;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,7 @@
 
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ManufacturerCarsController : ControllerBase
     {
         #region Properties
@@ -36,24 +38,24 @@
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ManufacturerCar>>> GetManufacturerCars()
         {
-            var manufacturerCars = await this.db.ManufacturerCars.Include(manufacturerCar => manufacturerCar.ModelCars).ToListAsync();
+            var manufacturer = await this.db.ManufacturerCars.Include(a => a.ModelCars).ToListAsync();
 
-            if (manufacturerCars == null)
+            if (manufacturer == null)
                 return NotFound();
 
-            var manufacturerCarsVM = manufacturerCars.Select(manufacturerCar =>
-                                                                     new ManufacturerCarVM()
-                                                                     {
-                                                                             Id = manufacturerCar.Id,
-                                                                             Manufacturer = manufacturerCar.Manufacturer,
-                                                                             ModelCarsVM = manufacturerCar.ModelCars.Select(b =>
-                                                                                                                                    new ModelCarVM()
-                                                                                                                                    {
-                                                                                                                                            Id = b.Id,
-                                                                                                                                            Model = b.Model,
-                                                                                                                                            Manufacturer = manufacturerCar.Manufacturer
-                                                                                                                                    }).ToList()
-                                                                     }).ToList();
+            var manufacturerCarsVM = manufacturer.Select(a =>
+                                                                 new ManufacturerCarVM()
+                                                                 {
+                                                                         Id = a.Id,
+                                                                         Manufacturer = a.Manufacturer,
+                                                                         ModelCarsVM = a.ModelCars.Select(b =>
+                                                                                                                  new ModelCarVM()
+                                                                                                                  {
+                                                                                                                          Id = b.Id,
+                                                                                                                          Model = b.Model,
+                                                                                                                          Manufacturer = a.Manufacturer
+                                                                                                                  }).ToList()
+                                                                 }).ToList();
 
             return Ok(manufacturerCarsVM);
         }
@@ -62,18 +64,18 @@
         [HttpGet("{id}")]
         public async Task<ActionResult<ManufacturerCar>> GetManufacturerCar(int id)
         {
-            var manufacturerCar = await this.db.ManufacturerCars.Include(car => car.ModelCars)
-                                            .SingleOrDefaultAsync(car => car.Id == id);
+            var manufacturerCar = await this.db.ManufacturerCars.Include(a => a.ModelCars)
+                                            .SingleOrDefaultAsync(b => b.Id == id);
 
             if (manufacturerCar == null)
                 return NotFound();
 
-            var modelCarVM = manufacturerCar.ModelCars.Select(modelCar => new ModelCarVM()
-                                                                          {
-                                                                                  Id = modelCar.Id,
-                                                                                  Model = modelCar.Model,
-                                                                                  Manufacturer = modelCar.ManufacturerCar.Manufacturer
-                                                                          }).ToList();
+            var modelCarVM = manufacturerCar.ModelCars.Select(a => new ModelCarVM()
+                                                                   {
+                                                                           Id = a.Id,
+                                                                           Model = a.Model,
+                                                                           Manufacturer = a.ManufacturerCar.Manufacturer
+                                                                   }).ToList();
 
             return Ok(modelCarVM);
         }

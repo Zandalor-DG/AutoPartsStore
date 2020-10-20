@@ -7,6 +7,7 @@
     using AutoPartsStoreBackend.Models.AppSystem;
     using AutoPartsStoreBackend.Models.Entities.AutopartsCatalog;
     using AutoPartsStoreBackend.Models.ViewModels.AutopartsCatalog;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +15,7 @@
 
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ModelCarsController : ControllerBase
     {
         #region Properties
@@ -35,18 +37,18 @@
         [HttpGet("{id}")]
         public async Task<ActionResult<ModelCar>> GetModelCar(int id)
         {
-            var modelCar = await this.db.ModelCars.Include(car => car.AutoParts)
-                                     .SingleOrDefaultAsync(car => car.Id == id);
+            var modelCar = await this.db.ModelCars.Include(a => a.AutoParts)
+                                     .SingleOrDefaultAsync(b => b.Id == id);
 
             if (modelCar == null)
                 return NotFound();
 
-            var autoPartsVM = modelCar.AutoParts.Select(modelCar => new AutoPartVM()
-                                                                    {
-                                                                            Id = modelCar.Id,
-                                                                            Name = modelCar.Name,
-                                                                            Model = modelCar.ModelCar.Model
-                                                                    }).ToList();
+            var autoPartsVM = modelCar.AutoParts.Select(a => new AutoPartVM()
+                                                             {
+                                                                     Id = a.Id,
+                                                                     Name = a.Name,
+                                                                     Model = a.ModelCar.Model
+                                                             }).ToList();
 
             return Ok(autoPartsVM);
         }
@@ -86,8 +88,8 @@
             if (modelCarVM == null)
                 return NotFound();
 
-            var modelCar = await this.db.ManufacturerCars.Include(modelCar => modelCar.ModelCars)
-                                     .SingleOrDefaultAsync(manufacturer => manufacturer.Id == id);
+            var modelCar = await this.db.ManufacturerCars.Include(a => a.ModelCars)
+                                     .SingleOrDefaultAsync(b => b.Id == id);
 
             modelCar.ModelCars.Add(new ModelCar()
                                    {

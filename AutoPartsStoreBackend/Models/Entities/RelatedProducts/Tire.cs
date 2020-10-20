@@ -6,7 +6,7 @@
 
     #endregion
 
-    public class Tire
+    public class Tire : IEntityBase
     {
         #region Properties
 

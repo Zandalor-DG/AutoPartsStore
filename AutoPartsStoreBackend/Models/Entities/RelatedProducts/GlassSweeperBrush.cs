@@ -6,7 +6,7 @@
 
     #endregion
 
-    public class GlassSweeperBrush
+    public class GlassSweeperBrush : IEntityBase
     {
         #region Properties
 

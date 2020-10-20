@@ -6,7 +6,7 @@
 
     #endregion
 
-    public class Instrument
+    public class Instrument : IEntityBase
     {
         #region Properties
 

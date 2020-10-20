@@ -6,7 +6,7 @@
 
     #endregion
 
-    public class Disk
+    public class Disk : IEntityBase
     {
         #region Properties
 

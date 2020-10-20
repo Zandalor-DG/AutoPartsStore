@@ -14,9 +14,22 @@ export const autoPartsCatalogAPI = {
       return response.data;
     });
   },
+  postAutoPartsStoreCatalogManufacturer(value) {
+    return instance
+      .post(`ManufacturerCars/`, JSON.stringify(value))
+      .then((response) => {
+        return response.data;
+      });
+  },
   getAutoPartsStoreModelCar(id) {
     return instance.get(`ManufacturerCars/${id}`).then((response) => {
       return response.data.map((a) => a.modelCarsVM);
     });
+  },
+};
+
+export const authAPI = {
+  me() {
+    return instance.get(`account`);
   },
 };

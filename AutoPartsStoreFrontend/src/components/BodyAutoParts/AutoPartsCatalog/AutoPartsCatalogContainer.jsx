@@ -3,19 +3,14 @@ import { connect } from "react-redux";
 import AutoPartsCatalog from "./AutoPartsCatalog";
 import {
   addModelCarElement,
-  setAutoPartsCatalog,
-  toggleIsFetching,
+  getAutoPartsCatalogManufacturer,
 } from "../../../redux/autoPartsCatalogReducer";
 import { withRouter } from "react-router-dom";
-import { autoPartsCatalogAPI } from "../../../api/api";
 import Preloader from "../../common/Preloader/Preloader";
 
 class AutoPartsCatalogContainer extends React.Component {
   componentDidMount() {
-    autoPartsCatalogAPI.getAutoPartsStoreCatalogManufacturer().then((data) => {
-      this.props.setAutoPartsCatalog(data);
-      this.props.toggleIsFetching(false);
-    });
+    this.props.getAutoPartsCatalogManufacturer();
   }
 
   render() {
@@ -47,7 +42,6 @@ export default connect(
   mapStateToProps,
   {
     addModelCarElement,
-    setAutoPartsCatalog,
-    toggleIsFetching,
+    getAutoPartsCatalogManufacturer,
   }
 )(WithUrlDataContainerComponent);
