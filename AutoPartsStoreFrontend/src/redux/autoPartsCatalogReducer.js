@@ -8,15 +8,31 @@ const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 
 let initialState = {
   manufacturerCar: [
-    // {
-    //   id: 1,
-    //   manufacturer: "Audi",
-    //   modelCars: [],
-    // },
-    // { id: 2, manufacturer: "Suzuki", modelCars: [] },
-    // { id: 3, manufacturer: "Toyota", modelCars: [] },
-    // { id: 4, manufacturer: "Mazda", modelCars: [] },
-    // { id: 5, manufacturer: "Volkswagen", modelCars: [] },
+    {
+      id: 1,
+      manufacturer: "Audi",
+      modelCars: [],
+    },
+    {
+      id: 2,
+      manufacturer: "Suzuki",
+      modelCars: [],
+    },
+    {
+      id: 3,
+      manufacturer: "Toyota",
+      modelCars: [],
+    },
+    {
+      id: 4,
+      manufacturer: "Mazda",
+      modelCars: [],
+    },
+    {
+      id: 5,
+      manufacturer: "Volkswagen",
+      modelCars: [],
+    },
   ],
 
   newCreateModelCarElement: "",
@@ -52,6 +68,7 @@ const autoPartsCatalogReducer = (state = initialState, action) => {
 };
 
 export const addModelCarElement = () => ({ type: ADD_MODEL_CAR });
+export const updateModelCarName = () => ({ type: UPDATE_MODEL_CAR_NAME });
 export const setAutoPartsCatalog = (manufacturerCar) => ({
   type: SET_AUTO_PARTS_CATALOG,
   manufacturerCar,
@@ -70,6 +87,14 @@ export const getAutoPartsCatalogManufacturer = () => (dispatch) => {
     dispatch(setAutoPartsCatalog(data));
     dispatch(toggleIsFetching(false));
   });
+};
+
+export const postAutopartsCatalogManufacturer = (value) => (dispatch) => {
+  autoPartsCatalogAPI
+    .postAutoPartsStoreCatalogManufacturer(value)
+    .then((data) => {
+      dispatch();
+    });
 };
 
 export default autoPartsCatalogReducer;

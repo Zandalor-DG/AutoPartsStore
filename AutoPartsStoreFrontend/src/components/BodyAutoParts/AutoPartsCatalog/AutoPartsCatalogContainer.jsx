@@ -38,10 +38,7 @@ let mapStateToProps = (state) => {
 
 let WithUrlDataContainerComponent = withRouter(AutoPartsCatalogContainer);
 
-export default connect(
-  mapStateToProps,
-  {
-    addModelCarElement,
-    getAutoPartsCatalogManufacturer,
-  }
-)(WithUrlDataContainerComponent);
+export default connect(mapStateToProps, {
+  addModelCarElement,
+  getAutoPartsCatalogManufacturer,
+})(WithUrlDataContainerComponent);

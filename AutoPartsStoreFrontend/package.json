@@ -7,8 +7,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
   },
@@ -26,5 +26,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "@babel/code-frame": "^7.10.4",
+    "@babel/core": "^7.12.3"
+  }
 }
