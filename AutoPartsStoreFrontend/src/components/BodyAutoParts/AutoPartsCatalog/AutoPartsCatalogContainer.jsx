@@ -2,33 +2,33 @@ import React from "react";
 import { connect } from "react-redux";
 import AutoPartsCatalog from "./AutoPartsCatalog";
 import {
-  addModelCarElement,
-  setAutoPartsCatalog,
-  toggleIsFetching,
+  updateModelCarName,
+  getAutoPartsCatalogManufacturer,
+  postAutoPartsCatalogManufacturer,
 } from "../../../redux/autoPartsCatalogReducer";
 import { withRouter } from "react-router-dom";
-import { autoPartsCatalogAPI } from "../../../api/api";
 import Preloader from "../../common/Preloader/Preloader";
 
 class AutoPartsCatalogContainer extends React.Component {
   componentDidMount() {
-    autoPartsCatalogAPI.getAutoPartsStoreCatalogManufacturer().then((data) => {
-      this.props.setAutoPartsCatalog(data);
-      this.props.toggleIsFetching(false);
-    });
+    this.props.getAutoPartsCatalogManufacturer();
   }
 
   render() {
     return (
       <>
-        {this.props.isFetching ? (
+        {/* {this.props.isFetching ? (
           <Preloader />
-        ) : (
-          <AutoPartsCatalog
-            {...this.props}
-            autoPartsCatalog={this.props.autoPartsCatalog}
-          />
-        )}
+        ) : ( */}
+        <AutoPartsCatalog
+          {...this.props}
+          autoPartsCatalog={this.props.autoPartsCatalog}
+          updateModelCarName={this.props.updateModelCarName}
+          postAutoPartsCatalogManufacturer={
+            this.props.postAutoPartsCatalogManufacturer
+          }
+        />
+        {/* )} */}
       </>
     );
   }
@@ -43,11 +43,8 @@ let mapStateToProps = (state) => {
 
 let WithUrlDataContainerComponent = withRouter(AutoPartsCatalogContainer);
 
-export default connect(
-  mapStateToProps,
-  {
-    addModelCarElement,
-    setAutoPartsCatalog,
-    toggleIsFetching,
-  }
-)(WithUrlDataContainerComponent);
+export default connect(mapStateToProps, {
+  updateModelCarName,
+  getAutoPartsCatalogManufacturer,
+  postAutoPartsCatalogManufacturer,
+})(WithUrlDataContainerComponent);

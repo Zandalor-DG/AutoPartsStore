@@ -3,14 +3,13 @@ import c from "./CreateModelCar.module.css";
 
 const CreateModelCar = (props) => {
   let newCreateModelCarElement = props.newCreateModelCarElement;
-
   let onCreateModelCarClick = () => {
-    props.addModelCarElement();
+    props.postAutoPartsCatalogManufacturer(props.newCreateModelCarElement);
   };
 
   let onCreateChange = (e) => {
     let text = e.target.value;
-    props.updateModelCarElement(text);
+    props.updateModelCarName(text);
   };
 
   return (

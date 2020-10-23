@@ -1,9 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="e4f8da27-6dce-4f2c-b52b-c129ad13760c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/200.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/preloader.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/user.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Account/LoginAccount.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Account/RegisterAccount.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/BodyAutoParts/AutoPartsCatalog/ModelCars/ModelCars.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/BodyAutoParts/AutoPartsCatalog/ModelCars/ModelCarsContainer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutoPartsStoreBackend/.vs/AutoPartsStoreBackend/v16/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../AutoPartsStoreBackend/.vs/AutoPartsStoreBackend/v16/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/BodyAutoParts/AutoPartsCatalog/AutoPartsCatalog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BodyAutoParts/AutoPartsCatalog/AutoPartsCatalog.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BodyAutoParts/AutoPartsCatalog/AutoPartsCatalogContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BodyAutoParts/AutoPartsCatalog/AutoPartsCatalogContainer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BodyAutoParts/AutoPartsCatalog/ModelCar/CreateModelCar/CreateModelCar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BodyAutoParts/AutoPartsCatalog/ModelCar/CreateModelCar/CreateModelCar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BodyAutoParts/AutoPartsCatalog/ModelCar/CreateModelCar/CreateModelCar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BodyAutoParts/AutoPartsCatalog/ModelCar/CreateModelCar/CreateModelCar.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BodyAutoParts/AutoPartsCatalog/ModelCar/ModelCar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BodyAutoParts/AutoPartsCatalog/ModelCar/ModelCar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BodyAutoParts/RelatedProducts/CreateRelatedProduct/CreateRelatedProduct.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BodyAutoParts/RelatedProducts/CreateRelatedProduct/CreateRelatedProduct.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BodyAutoParts/RelatedProducts/CreateRelatedProduct/CreateRelatedProduct.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BodyAutoParts/RelatedProducts/CreateRelatedProduct/CreateRelatedProduct.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BodyAutoParts/RelatedProducts/Products/Products.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BodyAutoParts/RelatedProducts/Products/Products.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BodyAutoParts/RelatedProducts/RelatedProducts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BodyAutoParts/RelatedProducts/RelatedProducts.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BodyAutoParts/RelatedProducts/RelatedProductsContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BodyAutoParts/RelatedProducts/RelatedProductsContainer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/Footer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Search/SearchParts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Search/SearchParts.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/ShoppingCart/ShoppingCart.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/ShoppingCart/ShoppingCart.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/Preloader/Preloader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/Preloader/Preloader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/auth-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/auth-reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/autoPartsCatalogReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/autoPartsCatalogReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/modelCarsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/modelCarsReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/redux-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/redux-store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/relatedProductsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/relatedProductsReducer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +77,7 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
   <component name="SvnConfiguration">
@@ -40,11 +91,23 @@
       <option name="presentableId" value="Default" />
       <updated>1602330808660</updated>
       <workItem from="1602330812919" duration="1066000" />
+      <workItem from="1603464963835" duration="687000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="WindowStateProjectService">
     <state x="877" y="191" key="CommitChangelistDialog2" timestamp="1602331174488">

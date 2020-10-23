@@ -1,17 +1,19 @@
 import React from "react";
-import Manufacturer from "./ManufacturerCars/Manufacturer";
-import CreateManufacturer from "./ManufacturerCars/CreateManufacturerCar/CreateManufacturer";
+import ModelCar from "./ModelCar/ModelCar";
+// import Preloader from "../../common/Preloader/Preloader";
+import CreateModelCar from "./ModelCar/CreateModelCar/CreateModelCar";
+// import { NavLink } from "react-router-dom";
 
-const AutoPartsCatalog = (props) => {
-  let state = props.autoPartsCatalog;
+const ModelCars = (props) => {
+  let state = props.modelCars;
   let auto = state.manufacturerCar.map((a) => (
-    <Manufacturer modelAuto={a.manufacturer} id={a.id} />
+    <ModelCar modelAuto={a.manufacturer} id={a.id} />
   ));
 
   return (
     <div className="autoPartsCatalog">
       {auto}
-      <CreateManufacturer
+      <CreateModelCar
         newCreateModelCarElement={state.newCreateModelCarElement}
         addModelCarElement={props.addModelCarElement}
         updateModelCarName={props.updateModelCarName}
@@ -23,4 +25,4 @@ const AutoPartsCatalog = (props) => {
   );
 };
 
-export default AutoPartsCatalog;
+export default ModelCars;
