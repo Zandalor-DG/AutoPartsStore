@@ -69,6 +69,7 @@ const autoPartsCatalogReducer = (state = initialState, action) => {
   }
 };
 
+<<<<<<< HEAD
 export const addModelCarElement = (newManufacturerCar) => ({
   type: ADD_MODEL_CAR,
   newManufacturerCar,
@@ -77,6 +78,10 @@ export const updateModelCarName = (newText) => ({
   type: UPDATE_MODEL_CAR_NAME,
   newText,
 });
+=======
+export const addModelCarElement = () => ({ type: ADD_MODEL_CAR });
+export const updateModelCarName = () => ({ type: UPDATE_MODEL_CAR_NAME });
+>>>>>>> 4d6369884b107c69063757b0f2d3befc1e4a3e83
 export const setAutoPartsCatalog = (manufacturerCar) => ({
   type: SET_AUTO_PARTS_CATALOG,
   manufacturerCar,
@@ -93,12 +98,20 @@ export const getAutoPartsCatalogManufacturer = () => (dispatch) => {
   });
 };
 
+<<<<<<< HEAD
 export const postAutoPartsCatalogManufacturer = (value) => (dispatch) => {
   autoPartsCatalogAPI
     .postAutoPartsStoreCatalogManufacturer(value)
     .then((data) => {
       dispatch(setAutoPartsCatalog(data));
       dispatch(addModelCarElement(data));
+=======
+export const postAutopartsCatalogManufacturer = (value) => (dispatch) => {
+  autoPartsCatalogAPI
+    .postAutoPartsStoreCatalogManufacturer(value)
+    .then((data) => {
+      dispatch();
+>>>>>>> 4d6369884b107c69063757b0f2d3befc1e4a3e83
     });
 };
 

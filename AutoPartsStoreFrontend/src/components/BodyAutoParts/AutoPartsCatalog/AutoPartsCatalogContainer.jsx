@@ -2,9 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import AutoPartsCatalog from "./AutoPartsCatalog";
 import {
+<<<<<<< HEAD
   updateModelCarName,
   getAutoPartsCatalogManufacturer,
   postAutoPartsCatalogManufacturer,
+=======
+  addModelCarElement,
+  getAutoPartsCatalogManufacturer,
+>>>>>>> 4d6369884b107c69063757b0f2d3befc1e4a3e83
 } from "../../../redux/autoPartsCatalogReducer";
 import { withRouter } from "react-router-dom";
 import Preloader from "../../common/Preloader/Preloader";
@@ -44,7 +49,12 @@ let mapStateToProps = (state) => {
 let WithUrlDataContainerComponent = withRouter(AutoPartsCatalogContainer);
 
 export default connect(mapStateToProps, {
+<<<<<<< HEAD
   updateModelCarName,
   getAutoPartsCatalogManufacturer,
   postAutoPartsCatalogManufacturer,
+=======
+  addModelCarElement,
+  getAutoPartsCatalogManufacturer,
+>>>>>>> 4d6369884b107c69063757b0f2d3befc1e4a3e83
 })(WithUrlDataContainerComponent);

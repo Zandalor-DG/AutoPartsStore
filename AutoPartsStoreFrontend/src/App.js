@@ -9,7 +9,10 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import AutoPartsCatalogContainer from "./components/BodyAutoParts/AutoPartsCatalog/AutoPartsCatalogContainer";
 import LoginAccount from "./components/Account/LoginAccount";
 import RegisterAccount from "./components/Account/RegisterAccount";
+<<<<<<< HEAD
 import ModelCarsContainer from "./components/BodyAutoParts/AutoPartsCatalog/ModelCars/ModelCarsContainer";
+=======
+>>>>>>> 4d6369884b107c69063757b0f2d3befc1e4a3e83
 
 const App = (props) => {
   return (
@@ -22,6 +25,7 @@ const App = (props) => {
           path="/autoPartsStore"
           render={() => <AutoPartsCatalogContainer />}
         />
+
         <Route
           path="/ModelCars"
           render={() => <ModelCarsContainer/>}
