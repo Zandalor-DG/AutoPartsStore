@@ -2,9 +2,9 @@ import React from "react";
 import c from "./CreateManufacturer.module.css";
 
 const CreateManufacturer = (props) => {
-  let newCreateModelCarElement = props.newCreateModelCarElement;
+  let nameElement = props.nameElement;
   let onCreateModelCarClick = () => {
-    props.postAutoPartsCatalogManufacturer(props.newCreateModelCarElement);
+    props.postAutoPartsCatalogManufacturer(props.nameElement);
   };
 
   let onCreateChange = (e) => {
@@ -25,7 +25,7 @@ const CreateManufacturer = (props) => {
           id="createOrUpdatedModelCar"
           placeholder="Enter your message"
           onChange={onCreateChange}
-          value={newCreateModelCarElement}
+          value={nameElement}
         />
         <button onClick={onCreateModelCarClick}>Create Model Car</button>
       </div>

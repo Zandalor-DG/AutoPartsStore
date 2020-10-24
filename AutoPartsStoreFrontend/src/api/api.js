@@ -16,22 +16,15 @@ export const autoPartsCatalogAPI = {
     });
   },
   postAutoPartsStoreCatalogManufacturer(value) {
-<<<<<<< HEAD
-    return instance.post(`ManufacturerCars`, value).then((response) => {
-      return response.data;
-    });
-  },
-};
-
-export const modelCarsAPI = {
-=======
     return instance
-      .post(`ManufacturerCars/`, JSON.stringify(value))
+      .post(`ManufacturerCars`, { manufacturer: value })
       .then((response) => {
         return response.data;
       });
   },
->>>>>>> 4d6369884b107c69063757b0f2d3befc1e4a3e83
+};
+
+export const modelCarsAPI = {
   getAutoPartsStoreModelCar(id) {
     return instance.get(`ManufacturerCars/${id}`).then((response) => {
       return response.data.map((a) => a.modelCarsVM);

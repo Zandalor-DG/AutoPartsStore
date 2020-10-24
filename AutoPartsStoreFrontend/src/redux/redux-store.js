@@ -6,7 +6,7 @@ import modelCarsReducer from "./modelCarsReducer";
 import thunkMiddleware from "redux-thunk";
 
 let reducers = combineReducers({
-  autoPartsCatalog: autoPartsCatalogReducer,
+  manufacturerCar: autoPartsCatalogReducer,
   relatedProducts: relatedProductsReducer,
   auth: authReducer,
   modelCars: modelCarsReducer,

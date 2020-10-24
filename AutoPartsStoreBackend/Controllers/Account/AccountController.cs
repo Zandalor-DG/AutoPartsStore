@@ -1,30 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using AutoPartsStoreBackend.Models.AppSystem;
-using AutoPartsStoreBackend.Models.Entities.Account;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-
-namespace AutoPartsStoreBackend.Controllers.Account
+﻿namespace AutoPartsStoreBackend.Controllers.Account
 {
+    #region << Using >>
+
+    using System.Collections.Generic;
     using System.Security.Claims;
+    using System.Threading.Tasks;
+    using AutoPartsStoreBackend.Models.AppSystem;
+    using AutoPartsStoreBackend.Models.Entities.Account;
     using AutoPartsStoreBackend.Models.ViewModels.Account;
+    using Microsoft.AspNetCore.Authentication;
+    using Microsoft.AspNetCore.Authentication.Cookies;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+
+    #endregion
 
     [Route("api/[controller]")]
     [ApiController]
     public class AccountController : ControllerBase
     {
+        #region Properties
+
         private readonly ApplicationContext db;
+
+        #endregion
+
+        #region Constructors
 
         public AccountController(ApplicationContext context)
         {
             this.db = context;
         }
+
+        #endregion
 
         // POST: api/Account
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
@@ -36,14 +44,19 @@ namespace AutoPartsStoreBackend.Controllers.Account
             if (!ModelState.IsValid)
                 return BadRequest(model);
 
-            var user = await this.db.Users.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
-            if (user != null)
+            var buyer = await this.db.Users
+                                  .Include(u => u.Role)
+                                  .FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
+
+            if (buyer != null)
             {
-                await Authenticate(model.Email);
- 
+                await Authenticate(buyer);
+
                 return Ok();
             }
+
             ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+
             return BadRequest(model);
         }
 
@@ -60,32 +73,45 @@ namespace AutoPartsStoreBackend.Controllers.Account
             var user = await this.db.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
             if (user == null)
             {
-                this.db.Users.Add(new User { Email = model.Email, Password = model.Password });
+                // добавляем пользователя в бд
+                user = new User { Email = model.Email, Password = model.Password };
+                var userRole = await this.db.Roles.FirstOrDefaultAsync(r => r.Name == "client");
+                if (userRole != null)
+                    user.Role = userRole;
+
+                this.db.Users.Add(user);
                 await this.db.SaveChangesAsync();
- 
-                await Authenticate(model.Email); 
- 
+
+                await Authenticate(user); // аутентификация
+
                 return Ok();
             }
             else
+            {
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+            }
+
             return BadRequest(model);
         }
- 
-        private async Task Authenticate(string userName)
+
+        private async Task Authenticate(User user)
         {
             var claims = new List<Claim>
                          {
-                                 new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
+                                 new Claim(ClaimsIdentity.DefaultNameClaimType, user.Id.ToString()),
+                                 new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role?.Name)
                          };
-            ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+
+            var id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
+                                        ClaimsIdentity.DefaultRoleClaimType);
+
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
- 
-        public async Task<IActionResult> Logout()
+
+        public async Task<IActionResult> LogOut()
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return Ok();
+            await HttpContext.SignOutAsync();
+            return SignOut();
         }
     }
 }

@@ -33,11 +33,7 @@ let initialState = {
       modelCars: [],
     },
   ],
-
-  newCreateModelCarElement: {
-    manufacturer: "",
-    modelCars: [],
-  },
+  nameElement: "",
   isFetching: true,
 };
 
@@ -46,15 +42,15 @@ const autoPartsCatalogReducer = (state = initialState, action) => {
     case ADD_MODEL_CAR:
       return {
         ...state,
-        manufacturer: "",
-        ManufacturerCar: [
-          ...state.carsModel,
-          { manufacturerCar: action.ManufacturerCar.manufacturer },
-        ],
+        newManufacturerCar: {
+          manufacturer: action.name,
+          modelCars: [],
+        },
+        nameElement: "",
       };
 
     case UPDATE_MODEL_CAR_NAME: {
-      return { ...state, newCreateModelCarElement: action.newText };
+      return { ...state, nameElement: action.newNameElement };
     }
     case SET_AUTO_PARTS_CATALOG: {
       return { ...state, manufacturerCar: action.manufacturerCar };
@@ -69,19 +65,15 @@ const autoPartsCatalogReducer = (state = initialState, action) => {
   }
 };
 
-<<<<<<< HEAD
-export const addModelCarElement = (newManufacturerCar) => ({
+export const addModelCarElement = (name) => ({
   type: ADD_MODEL_CAR,
-  newManufacturerCar,
+  name,
 });
-export const updateModelCarName = (newText) => ({
+export const updateModelCarName = (newNameElement) => ({
   type: UPDATE_MODEL_CAR_NAME,
-  newText,
+  newNameElement,
 });
-=======
-export const addModelCarElement = () => ({ type: ADD_MODEL_CAR });
-export const updateModelCarName = () => ({ type: UPDATE_MODEL_CAR_NAME });
->>>>>>> 4d6369884b107c69063757b0f2d3befc1e4a3e83
+
 export const setAutoPartsCatalog = (manufacturerCar) => ({
   type: SET_AUTO_PARTS_CATALOG,
   manufacturerCar,
@@ -98,21 +90,8 @@ export const getAutoPartsCatalogManufacturer = () => (dispatch) => {
   });
 };
 
-<<<<<<< HEAD
 export const postAutoPartsCatalogManufacturer = (value) => (dispatch) => {
-  autoPartsCatalogAPI
-    .postAutoPartsStoreCatalogManufacturer(value)
-    .then((data) => {
-      dispatch(setAutoPartsCatalog(data));
-      dispatch(addModelCarElement(data));
-=======
-export const postAutopartsCatalogManufacturer = (value) => (dispatch) => {
-  autoPartsCatalogAPI
-    .postAutoPartsStoreCatalogManufacturer(value)
-    .then((data) => {
-      dispatch();
->>>>>>> 4d6369884b107c69063757b0f2d3befc1e4a3e83
-    });
+  autoPartsCatalogAPI.postAutoPartsStoreCatalogManufacturer(value);
 };
 
 export default autoPartsCatalogReducer;

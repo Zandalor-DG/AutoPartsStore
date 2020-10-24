@@ -3,7 +3,7 @@ import Manufacturer from "./ManufacturerCars/Manufacturer";
 import CreateManufacturer from "./ManufacturerCars/CreateManufacturerCar/CreateManufacturer";
 
 const AutoPartsCatalog = (props) => {
-  let state = props.autoPartsCatalog;
+  let state = props.manufacturerCar;
   let auto = state.manufacturerCar.map((a) => (
     <Manufacturer modelAuto={a.manufacturer} id={a.id} />
   ));
@@ -12,7 +12,7 @@ const AutoPartsCatalog = (props) => {
     <div className="autoPartsCatalog">
       {auto}
       <CreateManufacturer
-        newCreateModelCarElement={state.newCreateModelCarElement}
+        nameElement={state.nameElement}
         addModelCarElement={props.addModelCarElement}
         updateModelCarName={props.updateModelCarName}
         postAutoPartsCatalogManufacturer={

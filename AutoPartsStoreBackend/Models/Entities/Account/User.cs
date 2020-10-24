@@ -6,7 +6,7 @@
 
     #endregion
 
-    public class User
+    public class User : IEntityBase
     {
         #region Properties
 
@@ -21,6 +21,8 @@
         public string Name { get; set; }
 
         public string Surname { get; set; }
+
+        public decimal Budget { get; set; }
 
         public Role Role { get; set; }
 
