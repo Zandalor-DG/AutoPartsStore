@@ -15,7 +15,9 @@ export const autoPartsCatalogAPI = {
       return response.data;
     });
   },
+
   postAutoPartsStoreCatalogManufacturer(value) {
+    debugger;
     return instance
       .post(`ManufacturerCars`, { manufacturer: value })
       .then((response) => {

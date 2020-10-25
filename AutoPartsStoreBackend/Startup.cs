@@ -36,8 +36,20 @@ namespace AutoPartsStoreBackend
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationContext>(options =>
                                                               options.UseSqlServer(connection));
-
             services.AddCors();
+
+            // services.AddCors(options =>
+            //                  {
+            //                      options.AddDefaultPolicy(
+            //                                               builder =>
+            //                                               {
+            //                                                   builder.WithOrigins("http://localhost:3000",
+            //                                                                       "http://localhost:3001");
+            //
+            //                                                   // .AllowAnyHeader()
+            //                                                   // .AllowAnyMethod();
+            //                                               });
+            //                  });
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options =>
@@ -59,8 +71,8 @@ namespace AutoPartsStoreBackend
 
             app.UseRouting();
 
-            app.UseCors(builder => builder.WithOrigins("http://localhost:3000")
-                                           .AllowCredentials());
+            // app.UseCors();
+            app.UseCors(options => options.SetIsOriginAllowed(x => _ = true).AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 
             app.UseAuthentication();
             app.UseAuthorization();
