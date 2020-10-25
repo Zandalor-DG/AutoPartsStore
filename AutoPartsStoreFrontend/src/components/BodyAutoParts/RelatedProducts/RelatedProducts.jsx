@@ -5,7 +5,9 @@ import CreateRelatedProduct from "./CreateRelatedProduct/CreateRelatedProduct";
 const RelatedProducts = (props) => {
   let state = props.relatedProducts;
   let relatedProduct = state.products.map((a) => (
-    <Products product={a.product} id={a.id} />
+    <span key={a.id}>
+      <Products product={a.product} id={a.id} />
+    </span>
   ));
 
   return (

@@ -5,7 +5,9 @@ import CreateManufacturer from "./ManufacturerCars/CreateManufacturerCar/CreateM
 const AutoPartsCatalog = (props) => {
   let state = props.manufacturerCar;
   let auto = state.manufacturerCar.map((a) => (
-    <Manufacturer modelAuto={a.manufacturer} id={a.id} />
+    <span key={a.id}>
+      <Manufacturer modelAuto={a.manufacturer} id={a.id} />
+    </span>
   ));
 
   return (
@@ -13,7 +15,6 @@ const AutoPartsCatalog = (props) => {
       {auto}
       <CreateManufacturer
         nameElement={state.nameElement}
-        addModelCarElement={props.addModelCarElement}
         updateModelCarName={props.updateModelCarName}
         postAutoPartsCatalogManufacturer={
           props.postAutoPartsCatalogManufacturer

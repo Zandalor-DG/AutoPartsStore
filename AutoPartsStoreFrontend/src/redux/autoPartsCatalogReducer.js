@@ -42,16 +42,20 @@ const autoPartsCatalogReducer = (state = initialState, action) => {
     case ADD_MODEL_CAR:
       return {
         ...state,
-        newManufacturerCar: {
-          manufacturer: action.name,
-          modelCars: [],
-        },
         nameElement: "",
+        manufacturerCar: [
+          ...state.manufacturerCar,
+          {
+            manufacturer: state.nameElement,
+            modelCars: [],
+          },
+        ],
       };
 
     case UPDATE_MODEL_CAR_NAME: {
       return { ...state, nameElement: action.newNameElement };
     }
+
     case SET_AUTO_PARTS_CATALOG: {
       return { ...state, manufacturerCar: action.manufacturerCar };
     }
@@ -65,9 +69,8 @@ const autoPartsCatalogReducer = (state = initialState, action) => {
   }
 };
 
-export const addModelCarElement = (name) => ({
+export const addModelCarElement = () => ({
   type: ADD_MODEL_CAR,
-  name,
 });
 export const updateModelCarName = (newNameElement) => ({
   type: UPDATE_MODEL_CAR_NAME,
@@ -78,6 +81,7 @@ export const setAutoPartsCatalog = (manufacturerCar) => ({
   type: SET_AUTO_PARTS_CATALOG,
   manufacturerCar,
 });
+
 export const toggleIsFetching = (isFetching) => ({
   type: TOGGLE_IS_FETCHING,
   isFetching,
@@ -91,7 +95,12 @@ export const getAutoPartsCatalogManufacturer = () => (dispatch) => {
 };
 
 export const postAutoPartsCatalogManufacturer = (value) => (dispatch) => {
-  autoPartsCatalogAPI.postAutoPartsStoreCatalogManufacturer(value);
+  autoPartsCatalogAPI
+    .postAutoPartsStoreCatalogManufacturer(value)
+    .then((data) => {
+      dispatch(addModelCarElement());
+      dispatch(toggleIsFetching(false));
+    });
 };
 
 export default autoPartsCatalogReducer;

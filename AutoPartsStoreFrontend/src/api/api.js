@@ -17,7 +17,6 @@ export const autoPartsCatalogAPI = {
   },
 
   postAutoPartsStoreCatalogManufacturer(value) {
-    debugger;
     return instance
       .post(`ManufacturerCars`, { manufacturer: value })
       .then((response) => {
