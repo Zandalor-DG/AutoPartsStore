@@ -23,7 +23,7 @@ const CreateManufacturer = (props) => {
           className={c.nameFF}
           type="text"
           id="createOrUpdatedModelCar"
-          placeholder="Enter your message"
+          placeholder="Enter name manufacturer"
           onChange={onCreateChange}
           value={nameElement}
         />

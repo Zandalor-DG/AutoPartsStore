@@ -2,15 +2,12 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const Manufacturer = (props) => {
-  let path = "/cars/" + props.id;
+  let path = "/manufacturer/" + props.id;
 
   return (
-    <div key={props.id} className="autoParts">
-      <NavLink key={props.id} to={path}>
-        {props.modelAuto + " "}
-
-        {/* <Cars onModelCars={props.onModelCars} /> */}
-      </NavLink>
+    <div className="autoParts">
+      <NavLink to={path}>{props.modelAuto + " "}</NavLink>
+      <NavLink to={`/manufacturerUpdate/${props.id}`}>Update</NavLink>
     </div>
   );
 };
