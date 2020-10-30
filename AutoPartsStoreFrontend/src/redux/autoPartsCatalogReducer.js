@@ -1,7 +1,6 @@
 import { autoPartsCatalogAPI } from "../api/api";
 
-const ADD_MODEL_CAR = "ADD_MODEL_CAR";
-const UPDATE_MODEL_CAR_NAME = "UPDATE_MODEL_CAR_NAME";
+const ADD_MANUFACTURER_CAR = "ADD_MANUFACTURER_CAR";
 const SET_AUTO_PARTS_CATALOG = "SET_AUTO_PARTS_CATALOG";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 
@@ -39,22 +38,17 @@ let initialState = {
 
 const autoPartsCatalogReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_MODEL_CAR:
+    case ADD_MANUFACTURER_CAR:
       return {
         ...state,
-        nameElement: "",
         manufacturerCar: [
           ...state.manufacturerCar,
           {
-            manufacturer: state.nameElement,
+            manufacturer: action.newOrUpdateManufacturerCar,
             modelCars: [],
           },
         ],
       };
-
-    case UPDATE_MODEL_CAR_NAME: {
-      return { ...state, nameElement: action.newNameElement };
-    }
 
     case SET_AUTO_PARTS_CATALOG: {
       return { ...state, manufacturerCar: action.manufacturerCar };
@@ -69,12 +63,9 @@ const autoPartsCatalogReducer = (state = initialState, action) => {
   }
 };
 
-export const addModelCarElement = () => ({
-  type: ADD_MODEL_CAR,
-});
-export const updateModelCarName = (newNameElement) => ({
-  type: UPDATE_MODEL_CAR_NAME,
-  newNameElement,
+export const addOrUpdateManufacturerCar = (newOrUpdateManufacturerCar) => ({
+  type: ADD_MANUFACTURER_CAR,
+  newOrUpdateManufacturerCar,
 });
 
 export const setAutoPartsCatalog = (manufacturerCar) => ({
@@ -98,7 +89,7 @@ export const postAutoPartsCatalogManufacturer = (value) => (dispatch) => {
   autoPartsCatalogAPI
     .postAutoPartsStoreCatalogManufacturer(value)
     .then((data) => {
-      dispatch(addModelCarElement());
+      dispatch(addOrUpdateManufacturerCar());
       dispatch(toggleIsFetching(false));
     });
 };

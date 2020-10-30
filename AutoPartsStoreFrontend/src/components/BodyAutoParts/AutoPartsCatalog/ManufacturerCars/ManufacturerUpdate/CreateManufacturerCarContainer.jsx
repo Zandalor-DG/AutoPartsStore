@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import CreateManufacturer from "../CreateManufacturerCar/CreateManufacturer";
 import {
-  updateModelCarName,
   getAutoPartsCatalogManufacturer,
   postAutoPartsCatalogManufacturer,
 } from "../../../../../redux/autoPartsCatalogReducer";
@@ -23,7 +22,6 @@ class CreateManufacturerCarContainer extends React.Component {
         <CreateManufacturer
           {...this.props}
           manufacturerCar={this.props.manufacturerCar}
-          updateModelCarName={this.props.updateModelCarName}
           postAutoPartsCatalogManufacturer={
             this.props.postAutoPartsCatalogManufacturer
           }
@@ -44,7 +42,6 @@ let mapStateToProps = (state) => {
 let WithUrlDataContainerComponent = withRouter(CreateManufacturerCarContainer);
 
 export default connect(mapStateToProps, {
-  updateModelCarName,
   getAutoPartsCatalogManufacturer,
   postAutoPartsCatalogManufacturer,
 })(WithUrlDataContainerComponent);

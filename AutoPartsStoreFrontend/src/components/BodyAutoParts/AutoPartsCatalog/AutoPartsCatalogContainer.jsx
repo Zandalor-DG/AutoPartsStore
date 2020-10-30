@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import AutoPartsCatalog from "./AutoPartsCatalog";
 import {
-  updateModelCarName,
   getAutoPartsCatalogManufacturer,
   postAutoPartsCatalogManufacturer,
 } from "../../../redux/autoPartsCatalogReducer";
@@ -44,7 +43,6 @@ let mapStateToProps = (state) => {
 let WithUrlDataContainerComponent = withRouter(AutoPartsCatalogContainer);
 
 export default connect(mapStateToProps, {
-  updateModelCarName,
   getAutoPartsCatalogManufacturer,
   postAutoPartsCatalogManufacturer,
 })(WithUrlDataContainerComponent);
