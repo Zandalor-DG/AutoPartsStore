@@ -1,30 +1,28 @@
 import React from "react";
 import { connect } from "react-redux";
-import AutoPartsCatalog from "./AutoPartsCatalog";
+import CreateOrUpdateManufacturer from "./CreateOrUpdateManufacturer";
 import {
   getAutoPartsCatalogManufacturer,
   postAutoPartsCatalogManufacturer,
-} from "../../../redux/autoPartsCatalogReducer";
+  putAutoPartsCatalogManufacturer,
+} from "../../../../../redux/autoPartsCatalogReducer";
 import { withRouter } from "react-router-dom";
-import Preloader from "../../common/Preloader/Preloader";
+import Preloader from "../../../../common/Preloader/Preloader";
 
-class AutoPartsCatalogContainer extends React.Component {
-  componentDidMount() {
-    this.props.getAutoPartsCatalogManufacturer();
-  }
-
+class CreateOrUpdateManufacturerCarContainer extends React.Component {
   render() {
     return (
       <>
         {this.props.isFetching ? (
           <Preloader />
         ) : (
-          <AutoPartsCatalog
+          <CreateOrUpdateManufacturer
             {...this.props}
-            manufacturerCar={this.props.manufacturerCar}
-            updateModelCarName={this.props.updateModelCarName}
             postAutoPartsCatalogManufacturer={
               this.props.postAutoPartsCatalogManufacturer
+            }
+            putAutoPartsCatalogManufacturer={
+              this.props.putAutoPartsCatalogManufacturer
             }
           />
         )}
@@ -35,14 +33,16 @@ class AutoPartsCatalogContainer extends React.Component {
 
 let mapStateToProps = (state) => {
   return {
-    manufacturerCar: state.manufacturerCar,
     isFetching: state.manufacturerCar.isFetching,
   };
 };
 
-let WithUrlDataContainerComponent = withRouter(AutoPartsCatalogContainer);
+let WithUrlDataContainerComponent = withRouter(
+  CreateOrUpdateManufacturerCarContainer
+);
 
 export default connect(mapStateToProps, {
   getAutoPartsCatalogManufacturer,
   postAutoPartsCatalogManufacturer,
+  putAutoPartsCatalogManufacturer,
 })(WithUrlDataContainerComponent);

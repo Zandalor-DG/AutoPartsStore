@@ -10,7 +10,7 @@ import AutoPartsCatalogContainer from "./components/BodyAutoParts/AutoPartsCatal
 import LoginAccount from "./components/Account/LoginAccount";
 import RegisterAccount from "./components/Account/RegisterAccount";
 import ModelCarsContainer from "./components/BodyAutoParts/AutoPartsCatalog/ModelCars/ModelCarsContainer";
-import CreateManufacturerCarContainer from "./components/BodyAutoParts/AutoPartsCatalog/ManufacturerCars/ManufacturerUpdate/CreateManufacturerCarContainer";
+import CreateOrUpdateManufacturerCarContainer from "./components/BodyAutoParts/AutoPartsCatalog/ManufacturerCars/CreateOrUpdateManufacturerCar/CreateOrUpdateManufacturerCarContainer";
 
 const App = (props) => {
   return (
@@ -24,8 +24,8 @@ const App = (props) => {
           render={() => <AutoPartsCatalogContainer />}
         />
         <Route
-          path="/manufacturerUpdate"
-          render={() => <CreateManufacturerCarContainer />}
+          path="/manufacturerUpdate/:manufacturerId"
+          render={() => <CreateOrUpdateManufacturerCarContainer />}
         />
 
         <Route path="/ModelCars" render={() => <ModelCarsContainer />} />

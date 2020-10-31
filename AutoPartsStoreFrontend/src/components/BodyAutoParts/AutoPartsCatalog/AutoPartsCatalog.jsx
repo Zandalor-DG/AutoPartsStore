@@ -1,6 +1,6 @@
 import React from "react";
 import Manufacturer from "./ManufacturerCars/Manufacturer";
-import CreateManufacturerCarContainer from "./ManufacturerCars/ManufacturerUpdate/CreateManufacturerCarContainer";
+import CreateOrUpdateManufacturerCarContainer from "./ManufacturerCars/CreateOrUpdateManufacturerCar/CreateOrUpdateManufacturerCarContainer";
 
 const AutoPartsCatalog = (props) => {
   let state = props.manufacturerCar;
@@ -13,13 +13,7 @@ const AutoPartsCatalog = (props) => {
   return (
     <div className="autoPartsCatalog">
       {auto}
-      <CreateManufacturerCarContainer
-        nameElement={state.nameElement}
-        updateModelCarName={props.updateModelCarName}
-        postAutoPartsCatalogManufacturer={
-          props.postAutoPartsCatalogManufacturer
-        }
-      />
+      <CreateOrUpdateManufacturerCarContainer />
     </div>
   );
 };

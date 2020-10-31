@@ -20,7 +20,41 @@ export const autoPartsCatalogAPI = {
     return instance
       .post(`ManufacturerCars`, { manufacturer: value })
       .then((response) => {
-        return response.data;
+        if (response.status === 200) {
+          console.log(response);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
+
+  putAutoPartsStoreCatalogManufacturer(value, manufacturerId) {
+    return instance
+      .put(`ManufacturerCars/${manufacturerId}`, {
+        id: manufacturerId,
+        manufacturer: value,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
+
+  deleteAutoPartsStoreCatalogManufacturer(manufacturerId) {
+    return instance
+      .delete(`ManufacturerCars/${manufacturerId}`)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
       });
   },
 };

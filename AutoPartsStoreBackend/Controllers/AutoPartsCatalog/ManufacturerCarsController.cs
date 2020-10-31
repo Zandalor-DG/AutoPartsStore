@@ -101,7 +101,7 @@
                     throw;
             }
 
-            return NoContent();
+            return Ok();
         }
 
         // POST: api/ManufacturerCars

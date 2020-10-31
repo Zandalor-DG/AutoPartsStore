@@ -86,10 +86,29 @@ export const getAutoPartsCatalogManufacturer = () => (dispatch) => {
 };
 
 export const postAutoPartsCatalogManufacturer = (value) => (dispatch) => {
+  autoPartsCatalogAPI.postAutoPartsStoreCatalogManufacturer(value).then(() => {
+    dispatch(addOrUpdateManufacturerCar(value));
+    dispatch(toggleIsFetching(false));
+  });
+};
+
+export const putAutoPartsCatalogManufacturer = (value, manufacturerId) => (
+  dispatch
+) => {
   autoPartsCatalogAPI
-    .postAutoPartsStoreCatalogManufacturer(value)
-    .then((data) => {
-      dispatch(addOrUpdateManufacturerCar());
+    .putAutoPartsStoreCatalogManufacturer(value, manufacturerId)
+    .then(() => {
+      dispatch(toggleIsFetching(false));
+    });
+};
+
+export const deleteAutoPartsCatalogManufacturer = (manufacturerId) => (
+  dispatch
+) => {
+  autoPartsCatalogAPI
+    .deleteAutoPartsStoreCatalogManufacturer(manufacturerId)
+    .then(() => {
+      //  dispatch(addOrUpdateManufacturerCar(value));
       dispatch(toggleIsFetching(false));
     });
 };
