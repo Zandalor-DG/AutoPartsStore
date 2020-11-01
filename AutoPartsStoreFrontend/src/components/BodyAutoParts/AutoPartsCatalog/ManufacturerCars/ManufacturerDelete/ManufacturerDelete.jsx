@@ -1,11 +1,16 @@
-import React from "react";
+import React from 'react';
 
 const ManufacturerDelete = (props) => {
-  const onClickDeleteManufacturer = () => {};
+  debugger;
+  let manufacturerId = Number(props.match.params.manufacturerId);
+
+  const onClickDeleteManufacturer = () => {
+    props.deleteAutoPartsCatalogManufacturer(manufacturerId);
+  };
 
   return (
     <div className="autoParts">
-      <button onClick={onClickDeleteManufacturer()}>Delete</button>
+      <button onClick={onClickDeleteManufacturer}>Delete</button>
     </div>
   );
 };

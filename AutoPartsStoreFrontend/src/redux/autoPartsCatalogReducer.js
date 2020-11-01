@@ -1,38 +1,38 @@
-import { autoPartsCatalogAPI } from "../api/api";
+import { autoPartsCatalogAPI } from '../api/api';
 
-const ADD_MANUFACTURER_CAR = "ADD_MANUFACTURER_CAR";
-const SET_AUTO_PARTS_CATALOG = "SET_AUTO_PARTS_CATALOG";
-const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
+const ADD_MANUFACTURER_CAR = 'ADD_MANUFACTURER_CAR';
+const SET_AUTO_PARTS_CATALOG = 'SET_AUTO_PARTS_CATALOG';
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 let initialState = {
   manufacturerCar: [
     {
       id: 1,
-      manufacturer: "Audi",
+      manufacturer: 'Audi',
       modelCars: [],
     },
     {
       id: 2,
-      manufacturer: "Suzuki",
+      manufacturer: 'Suzuki',
       modelCars: [],
     },
     {
       id: 3,
-      manufacturer: "Toyota",
+      manufacturer: 'Toyota',
       modelCars: [],
     },
     {
       id: 4,
-      manufacturer: "Mazda",
+      manufacturer: 'Mazda',
       modelCars: [],
     },
     {
       id: 5,
-      manufacturer: "Volkswagen",
+      manufacturer: 'Volkswagen',
       modelCars: [],
     },
   ],
-  nameElement: "",
+  nameElement: '',
   isFetching: true,
 };
 
@@ -92,25 +92,17 @@ export const postAutoPartsCatalogManufacturer = (value) => (dispatch) => {
   });
 };
 
-export const putAutoPartsCatalogManufacturer = (value, manufacturerId) => (
-  dispatch
-) => {
-  autoPartsCatalogAPI
-    .putAutoPartsStoreCatalogManufacturer(value, manufacturerId)
-    .then(() => {
-      dispatch(toggleIsFetching(false));
-    });
+export const putAutoPartsCatalogManufacturer = (value, manufacturerId) => (dispatch) => {
+  autoPartsCatalogAPI.putAutoPartsStoreCatalogManufacturer(value, manufacturerId).then(() => {
+    dispatch(toggleIsFetching(false));
+  });
 };
 
-export const deleteAutoPartsCatalogManufacturer = (manufacturerId) => (
-  dispatch
-) => {
-  autoPartsCatalogAPI
-    .deleteAutoPartsStoreCatalogManufacturer(manufacturerId)
-    .then(() => {
-      //  dispatch(addOrUpdateManufacturerCar(value));
-      dispatch(toggleIsFetching(false));
-    });
+export const deleteAutoPartsCatalogManufacturer = (manufacturerId) => (dispatch) => {
+  autoPartsCatalogAPI.deleteAutoPartsStoreCatalogManufacturer(manufacturerId).then(() => {
+    //  dispatch(addOrUpdateManufacturerCar(value));
+    dispatch(toggleIsFetching(false));
+  });
 };
 
 export default autoPartsCatalogReducer;
