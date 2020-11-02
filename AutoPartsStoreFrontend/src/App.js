@@ -30,15 +30,9 @@ const App = (props) => {
 
         <Route path="/ModelCars" render={() => <ModelCarsContainer />} />
 
-        <Route
-          path="/relatedProducts"
-          render={() => <RelatedProductsContainer />}
-        />
+        <Route path="/relatedProducts" render={() => <RelatedProductsContainer />} />
 
-        <Route
-          path="/createRelatedProduct"
-          render={() => <CreateRelatedProduct />}
-        />
+        <Route path="/createRelatedProduct" render={() => <CreateRelatedProduct />} />
 
         <Route path="/loginAccount" render={() => <LoginAccount />} />
 

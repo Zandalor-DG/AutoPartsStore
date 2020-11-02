@@ -1,21 +1,20 @@
-import React from "react";
-import CreateManufacturerForm from "../../../../FormProject/CreateManufacturerForms/CreateManufacturerForm";
+import React from 'react';
 
-const CreateOrUpdateManufacturer = (props) => {
+//import { Redirect } from 'react-router-dom';
+import CreateManufacturerForm from '../../../../FormProject/CreateManufacturerForms/CreateManufacturerForm';
+
+const CreateOrUpdateManufacturer = props => {
+  debugger;
   let manufacturerId = Number(props.match.params.manufacturerId);
 
-  let onCreateManufacturerCar = (values) => {
+  let onCreateManufacturerCar = values => {
     if (!manufacturerId) {
-      props.postAutoPartsCatalogManufacturer(
-        values.createOrUpdatedManufacturer
-      );
+      props.postAutoPartsCatalogManufacturer(values.createOrUpdatedManufacturer);
     } else {
-      props.putAutoPartsCatalogManufacturer(
-        values.createOrUpdatedManufacturer,
-        manufacturerId
-      );
+      props.putAutoPartsCatalogManufacturer(values.createOrUpdatedManufacturer, manufacturerId);
     }
   };
+
   return (
     <div>
       <CreateManufacturerForm onSubmit={onCreateManufacturerCar} />

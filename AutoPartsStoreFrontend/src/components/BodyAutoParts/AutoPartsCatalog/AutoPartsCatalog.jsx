@@ -5,8 +5,9 @@ import CreateOrUpdateManufacturerCarContainer from "./ManufacturerCars/CreateOrU
 const AutoPartsCatalog = (props) => {
   let state = props.manufacturerCar;
   let auto = state.manufacturerCar.map((a) => (
-    <span key={a.id}>
+    <span>
       <Manufacturer
+        {...props}
         modelAuto={a.manufacturer}
         id={a.id}
         deleteAutoPartsCatalogManufacturer={props.deleteAutoPartsCatalogManufacturer}

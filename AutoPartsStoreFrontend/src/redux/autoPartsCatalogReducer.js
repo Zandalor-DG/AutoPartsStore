@@ -3,6 +3,7 @@ import { autoPartsCatalogAPI } from '../api/api';
 const ADD_MANUFACTURER_CAR = 'ADD_MANUFACTURER_CAR';
 const SET_AUTO_PARTS_CATALOG = 'SET_AUTO_PARTS_CATALOG';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const DELETE_AUTO_PARTS_CATALOG = 'DELETE_AUTO_PARTS_CATALOG';
 
 let initialState = {
   manufacturerCar: [
@@ -50,6 +51,13 @@ const autoPartsCatalogReducer = (state = initialState, action) => {
         ],
       };
 
+    case DELETE_AUTO_PARTS_CATALOG: {
+      return {
+        ...state,
+        manufacturerCar: [...state.manufacturerCar.filter(a => a.id !== action.manufacturerId)],
+      };
+    }
+
     case SET_AUTO_PARTS_CATALOG: {
       return { ...state, manufacturerCar: action.manufacturerCar };
     }
@@ -66,6 +74,11 @@ const autoPartsCatalogReducer = (state = initialState, action) => {
 export const addOrUpdateManufacturerCar = (newOrUpdateManufacturerCar) => ({
   type: ADD_MANUFACTURER_CAR,
   newOrUpdateManufacturerCar,
+});
+
+export const deleteAutoPartsCatalogElement = manufacturerId => ({
+  type: DELETE_AUTO_PARTS_CATALOG,
+  manufacturerId,
 });
 
 export const setAutoPartsCatalog = (manufacturerCar) => ({
@@ -100,7 +113,7 @@ export const putAutoPartsCatalogManufacturer = (value, manufacturerId) => (dispa
 
 export const deleteAutoPartsCatalogManufacturer = (manufacturerId) => (dispatch) => {
   autoPartsCatalogAPI.deleteAutoPartsStoreCatalogManufacturer(manufacturerId).then(() => {
-    //  dispatch(addOrUpdateManufacturerCar(value));
+    dispatch(deleteAutoPartsCatalogElement(manufacturerId));
     dispatch(toggleIsFetching(false));
   });
 };

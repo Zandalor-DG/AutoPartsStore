@@ -1,8 +1,8 @@
 import React from 'react';
 
 const ManufacturerDelete = (props) => {
-  debugger;
-  let manufacturerId = Number(props.match.params.manufacturerId);
+
+  let manufacturerId = props.manufacturerId;
 
   const onClickDeleteManufacturer = () => {
     props.deleteAutoPartsCatalogManufacturer(manufacturerId);

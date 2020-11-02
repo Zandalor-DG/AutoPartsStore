@@ -7,9 +7,13 @@ const Manufacturer = (props) => {
 
   return (
     <div className="autoParts">
-      <NavLink to={path}>{props.modelAuto + ' '}</NavLink>
+      <NavLink key={props.id} to={path}>
+        {props.modelAuto + ' '}
+      </NavLink>
       <NavLink to={`/manufacturerUpdate/${props.id}`}>Update</NavLink>
       <ManufacturerDelete
+        {...props}
+        manufacturerId = {props.id}
         deleteAutoPartsCatalogManufacturer={props.deleteAutoPartsCatalogManufacturer}
       />
     </div>
