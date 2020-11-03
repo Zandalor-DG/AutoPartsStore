@@ -1,35 +1,25 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import RegisterForm from '../FormProject/RegisterForm/RegisterForm';
 
-const RegisterAccount = (props) => {
+const RegisterAccount = props => {
+  const onRegisterNewUser = ({ emailNewUser, passwordNewUser, confirmPasswordNewUser }) => {
+    if (passwordNewUser !== confirmPasswordNewUser) {
+      alert('Jopa');
+    }
+
+    props.postRegisterUser(emailNewUser, passwordNewUser, confirmPasswordNewUser);
+  };
+
   return (
     <div>
       <h2>Регистрация</h2>
 
       <NavLink to="/Login">Войти</NavLink>
-
-      <form>
-        <div>
-          <div>
-            <label>Введите Email</label>
-            <br />
-            <input type="text" />
-          </div>
-          <div>
-            <label>Введите пароль</label>
-            <br />
-            <input type="password" />
-          </div>
-          <div>
-            <label asp-for="ConfirmPassword">Повторите пароль</label>
-            <br />
-            <input type="text" />
-          </div>
-          <div>
-            <input type="submit" value="Войти" />
-          </div>
-        </div>
-      </form>
+      <br />
+      <br />
+      <br />
+      <RegisterForm onSubmit={onRegisterNewUser} />
     </div>
   );
 };

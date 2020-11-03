@@ -13,7 +13,7 @@ const Header = (props) => {
       />
       <ShoppingCart />
       <div className={s.loginBlock}>
-        {props.isAuth ? props.login : <NavLink to={"/login"}>Login</NavLink>}
+        {props.isAuth ? props.login : <span> <NavLink to={"/loginAccount"}>Login</NavLink> / <NavLink to={"/registerAccount"}>Register</NavLink> </span>}
       </div>
     </header>
   );

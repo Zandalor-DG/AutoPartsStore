@@ -9,7 +9,7 @@ import { withRouter } from 'react-router-dom';
 import Preloader from '../../common/Preloader/Preloader';
 import { compose } from 'redux';
 
-const AutoPartsCatalogContainer = (props) => {
+const AutoPartsCatalogContainer = props => {
   useEffect(() => {
     props.getAutoPartsCatalogManufacturer();
   }, []);
@@ -29,7 +29,7 @@ const AutoPartsCatalogContainer = (props) => {
   );
 };
 
-let mapStateToProps = (state) => {
+let mapStateToProps = state => {
   return {
     manufacturerCar: state.manufacturerCar,
     isFetching: state.manufacturerCar.isFetching,

@@ -1,28 +1,21 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import LoginForm from '../FormProject/LoginForm/LoginForm';
 
-const LoginAccount = (props) => {
+const LoginAccount = props => {
+  const onLoginNewUser = ({ loginUser, passwordUser }) => {
+    props.postLoginUser({ loginUser, passwordUser });
+  };
+
   return (
     <div>
       <h2>Вход на сайт</h2>
 
       <NavLink to="/Register">Регистрация</NavLink>
-
-      <form>
-        <div>
-          <div>
-            <label>Введите Email</label>
-            <input type="text" />
-          </div>
-          <div>
-            <label>Введите пароль</label>
-            <input type="password" />
-          </div>
-          <div>
-            <input type="submit" value="Войти" />
-          </div>
-        </div>
-      </form>
+      <br />
+      <br />
+      <br />
+      <LoginForm onSubmit={onLoginNewUser} />
     </div>
   );
 };

@@ -4,10 +4,9 @@ import React from 'react';
 import CreateManufacturerForm from '../../../../FormProject/CreateManufacturerForms/CreateManufacturerForm';
 
 const CreateOrUpdateManufacturer = props => {
-  debugger;
-  let manufacturerId = Number(props.match.params.manufacturerId);
+  const manufacturerId = Number(props.match.params.manufacturerId);
 
-  let onCreateManufacturerCar = values => {
+  const onCreateManufacturerCar = values => {
     if (!manufacturerId) {
       props.postAutoPartsCatalogManufacturer(values.createOrUpdatedManufacturer);
     } else {

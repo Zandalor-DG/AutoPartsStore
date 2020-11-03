@@ -1,7 +1,7 @@
-import React from "react";
-import { Field, reduxForm } from "redux-form";
+import React from 'react';
+import { Field, reduxForm } from 'redux-form';
 
-let CreateManufacturerForm = (props) => {
+let CreateManufacturerForm = props => {
   return (
     <form onSubmit={props.handleSubmit}>
       <label htmlFor="createOrUpdatedManufacturer">Manufacturer Car:</label>
@@ -17,8 +17,6 @@ let CreateManufacturerForm = (props) => {
   );
 };
 
-CreateManufacturerForm = reduxForm({
-  form: "createOrUpdatedManufacturerCarForm",
+export default CreateManufacturerForm = reduxForm({
+  form: 'createOrUpdatedManufacturerCarForm',
 })(CreateManufacturerForm);
-
-export default CreateManufacturerForm;
