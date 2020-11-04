@@ -5,9 +5,9 @@ import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 import LoginAccount from './LoginAccount';
 
-const LoginAccountContainer = props => {
+const LoginAccountContainer = React.memo(props => {
   return <LoginAccount {...props} postLoginUser = {props.postLoginUser} />;
-};
+});
 
 const mapStateToProps = state => ({
   isAuth: state.auth.isAuth,

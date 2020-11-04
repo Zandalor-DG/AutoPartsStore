@@ -10,49 +10,48 @@ const instance = axios.create({
 });
 
 export const accountAPI = {
-  getAutoPartsStoreCatalogManufacturer() {
-    return instance.get(`ManufacturerCars`).then(response => {
-      return response.data;
-    });
-  },
+         getAutoPartsStoreCatalogManufacturer() {
+           return instance.get(`ManufacturerCars`).then(response => {
+             return response.data;
+           });
+         },
 
-  postLoginUser({ email, password }) {
-    return instance
-      .post(`Login`, { email, password })
-      .then(response => {
-        if (response.status === 200) {
-          console.log(response);
-        }
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  },
+         postLoginUser({ email, password }) {
+           return instance
+             .post(`Login`, { email, password })
+             .then(response => {
+               if (response.status === 200) {
+                 console.log(response);
+               }
+             })
+             .catch(err => {
+               console.error(err);
+             });
+         },
 
-  postRegisterUser(email, password, confirmPassword) {
-    debugger;
-    return instance
-      .post(`Register`, { email, password, confirmPassword })
-      .then(response => {
-        if (response.status === 200) {
-          console.log(response);
-        }
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  },
+         postRegisterUser(email, password, confirmPassword) {
+           return instance
+             .post(`Register`, { email, password, confirmPassword })
+             .then(response => {
+               if (response.status === 200) {
+                 console.log(response);
+               }
+             })
+             .catch(err => {
+               console.error(err);
+             });
+         },
 
-  deleteLogOutUser(manufacturerId) {
-    return instance
-      .delete(`Account/${manufacturerId}`)
-      .then(response => {
-        if (response.status === 200) {
-          console.log(response);
-        }
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  },
-};
+         deleteLogOutUser(manufacturerId) {
+           return instance
+             .delete(`Account/${manufacturerId}`)
+             .then(response => {
+               if (response.status === 200) {
+                 console.log(response);
+               }
+             })
+             .catch(err => {
+               console.error(err);
+             });
+         },
+       };

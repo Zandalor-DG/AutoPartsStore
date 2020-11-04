@@ -1,37 +1,37 @@
-import React from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 // import Preloader from "../../common/Preloader/Preloader";
-import ModelCars from "./ModelCars";
-import { setModelCars } from "../../../../redux/modelCarsReducer";
+import ModelCars from './ModelCars';
+import { setModelCars } from '../../../../redux/modelCarsReducer';
+import { compose } from 'redux';
 
-class ModelCarsContainer extends React.Component {
-  componentDidMount() {
-    this.props.getAutoPartsCatalogManufacturer();
-  }
+const ModelCarsContainer = React.memo(props => {
+  useEffect(() => {
+    props.getAutoPartsCatalogManufacturer();
+  }, []);
 
-  render() {
-    return (
-      <>
-        {/* {this.props.isFetching ? (
+  return (
+    <>
+      {/* {this.props.isFetching ? (
           <Preloader />
         ) : ( */}
-        <ModelCars {...this.props} />
-        {/* )} */}
-      </>
-    );
-  }
-}
+      <ModelCars {...this.props} />
+      {/* )} */}
+    </>
+  );
+});
 
-let mapStateToProps = (state) => {
+let mapStateToProps = state => {
   return {
-    autoPartsCatalog: state.autoPartsCatalog,
-    isFetching: state.autoPartsCatalog.isFetching,
+    modelCars: state.modelCars,
+    isFetching: state.modelCars.isFetching,
   };
 };
 
-let WithUrlDataContainerComponent = withRouter(ModelCarsContainer);
-
-export default connect(mapStateToProps, {
-  setModelCars,
-})(WithUrlDataContainerComponent);
+export default compose(
+  connect(mapStateToProps, {
+    setModelCars,
+  }),
+  withRouter,
+)(ModelCarsContainer);
